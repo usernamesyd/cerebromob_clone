@@ -2,7 +2,7 @@
 
 Cerebro Mobile written in Dart/Flutter.
 
-# Getting Started
+## Getting Started
 
 To run a development build in Android:
 1. Make sure [Flutter](https://docs.flutter.dev/get-started/install) is installed.
@@ -10,7 +10,7 @@ To run a development build in Android:
 3. Create an Android Emulator or connect an android phone via USB ADB. To check the device or emulator is connected, run `flutter devices` and make sure flutter can access your device.
 4. Run `flutter run -v` to build and install the app. 
 
-# Contributing
+## Contributing
 For cohesive and documented contributing, we will use the following workflow.
 
 1. Create a **new issue** and format of the title must be the task category first and then the task name like this:
