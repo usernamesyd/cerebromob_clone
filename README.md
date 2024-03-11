@@ -30,4 +30,4 @@ For cohesive and documented contributing, we will use the following workflow.
 
 5. After committing, push the changes and submit a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 6. Assign a reviewer for the pull request. When the reviewer agreed, he/she must `Accept changes`
-7. Merge the changes to production branch (main).
+7. Merge the changes to `dev` branch.
