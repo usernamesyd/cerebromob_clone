@@ -6,7 +6,8 @@ class CerebroMobileApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Placeholder(),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(),
     );
   }
 }
