@@ -57,7 +57,7 @@ class _CerebroLogoState extends State<CerebroLogo> {
     return Center(
           child: AnimatedOpacity(
             opacity: opacityLevel,
-            duration: Duration(seconds: 3),
+            duration: Duration(seconds: 2),
             child: Image(
               image: AssetImage('assets/images/cerebro-splash.png'),
             ),
