@@ -1,3 +1,4 @@
+import 'package:cerebro_mobile/pages/login/splash_page.dart';
 import 'package:flutter/material.dart';
 
 class CerebroMobileApp extends StatelessWidget {
@@ -7,7 +8,7 @@ class CerebroMobileApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(),
+      home: SplashPage(),
     );
   }
 }
