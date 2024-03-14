@@ -1,4 +1,5 @@
 import 'package:cerebro_mobile/pages/login/splash_page.dart';
+import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class CerebroMobileApp extends StatelessWidget {
@@ -8,6 +9,10 @@ class CerebroMobileApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: 'Poppins',
+        primaryColor: cerebroBlue100,
+      ),
       home: SplashPage(),
     );
   }
