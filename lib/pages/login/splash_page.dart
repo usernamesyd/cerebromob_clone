@@ -1,3 +1,4 @@
+import 'package:cerebro_mobile/pages/login/login_page.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -54,6 +55,14 @@ class _CerebroLogoState extends State<CerebroLogo> {
 
   @override
   Widget build(BuildContext context) {
+
+    // Change screen to LoginPage after 5 seconds
+    Future.delayed(Duration(seconds: 5), () {
+      Navigator.pushReplacement(context, 
+      MaterialPageRoute(builder: (context) => LoginPage()));
+    });
+
+    
     return Center(
           child: AnimatedOpacity(
             opacity: opacityLevel,
