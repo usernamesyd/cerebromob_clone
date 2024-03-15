@@ -53,6 +53,7 @@ class SchoolHeaderContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image(image: AssetImage('assets/images/SchoolLogo.png')),
+          SizedBox(height: 12),
           Text(
             'Welcome to ABC School of Cavite!',
             style: poppinsH3.copyWith(
@@ -109,11 +110,12 @@ class LoginFormField extends StatelessWidget {
                   text: 'Password',
                   icon: Icons.lock,
                 ),
-                SizedBox(height: 12), // Margin
+                SizedBox(height: 32), // Margin
                 CerebroElevatedBtn(
                   onPressed: () => {}, 
                   text: 'Login'
-                  )
+                  ),
+                  SizedBox(height: 24), // Margin
 
               ]
             ),
@@ -129,12 +131,14 @@ class LoginFooterContainer extends StatelessWidget {
     return Column(
 
       children: [
+         SizedBox(height: 12),
         Text(
           'Forgot Password?', 
           style: TextStyle(
             color: cerebroWhite
           ),
         ),
+         SizedBox(height: 12),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -163,7 +167,7 @@ class LoginFooterContainer extends StatelessWidget {
               style: TextStyle(color: cerebroWhite, fontSize: 12),
               ),
             SizedBox(
-              height: 80,
+              height: 72,
               child: Image.asset(
                 'assets/images/cerebro-splash.png',
                 fit: BoxFit.contain,
