@@ -1,5 +1,6 @@
 import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
 import 'package:cerebro_mobile/atoms/cerebro_textform_field.dart';
+import 'package:cerebro_mobile/atoms/cerebro_whiteback_btn.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/theme/texts.dart';
 import 'package:flutter/cupertino.dart';
@@ -46,23 +47,7 @@ class RegisterHeaderContainer extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 28, vertical: 24),
       child: Column(
         children: [
-          Align(
-            alignment: Alignment.topLeft,
-            child: InkWell(
-              onTap: () => Navigator.of(context).pop(),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white, 
-                  shape: BoxShape.circle,
-                ),
-                padding: EdgeInsets.all(8), 
-                child: Icon(
-                  Icons.arrow_back_ios_new,
-                  color: cerebroBlue100, 
-                ),
-              ),
-            ),
-          ),
+          const WhiteBackButton(),
           SizedBox(height: 20),
           Text(
             'Create an Account',
