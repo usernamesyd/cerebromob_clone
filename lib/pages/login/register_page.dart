@@ -5,10 +5,10 @@ import 'package:cerebro_mobile/theme/texts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'register_page.dart';
+import 'login_page.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +26,9 @@ class LoginPage extends StatelessWidget {
           )
         ),
         child: ListView(children: [
-          SchoolHeaderContainer(),
-          LoginContainer(), 
-          LoginFooterContainer()
+          RegisterHeaderContainer(), // You can reuse the SchoolHeaderContainer from the LoginPage
+          RegisterContainer(), 
+          RegisterFooterContainer()
         ],),
       ),
 
@@ -36,39 +36,52 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-
-class SchoolHeaderContainer extends StatelessWidget {
-  const SchoolHeaderContainer({super.key});
+class RegisterHeaderContainer extends StatelessWidget {
+  const RegisterHeaderContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(horizontal: 28, vertical: 80),
+      padding: EdgeInsets.symmetric(horizontal: 28, vertical: 24),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image(image: AssetImage('assets/images/SchoolLogo.png')),
-          SizedBox(height: 12),
-          Text(
-            'Welcome to ABC School of Cavite!',
-            style: poppinsH3.copyWith(
-              color: cerebroWhite,
+          Align(
+            alignment: Alignment.topLeft,
+            child: InkWell(
+              onTap: () => Navigator.of(context).pop(),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white, 
+                  shape: BoxShape.circle,
+                ),
+                padding: EdgeInsets.all(8), 
+                child: Icon(
+                  Icons.arrow_back_ios_new,
+                  color: cerebroBlue100, 
+                ),
+              ),
             ),
+          ),
+          SizedBox(height: 20),
+          Text(
+            'Create an Account',
+            style: poppinsH2.copyWith(color: Colors.white),
             textAlign: TextAlign.center,
-          )
-        ],),
+          ),
+          SizedBox(height: 20),
+          Image.asset(
+            'assets/images/RegisterPageImage.png',
+            fit: BoxFit.contain,
+          ),
+        ],
+      ),
     );
   }
 }
 
-class LoginContainer extends StatelessWidget {
-  const LoginContainer({super.key});
+class RegisterContainer extends StatelessWidget {
+  const RegisterContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -77,74 +90,56 @@ class LoginContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Login to CEREBRO®',
-            style: poppinsH5.copyWith(
-            color: cerebroWhite,
-            ),
-            textAlign: TextAlign.left,
-          ),
           SizedBox(height: 24), // Margin
-          LoginFormField(),
+          RegisterFormField(),
         ],
       )
     );
   }
 }
 
-class LoginFormField extends StatelessWidget {
-  const LoginFormField({super.key});
+class RegisterFormField extends StatelessWidget {
+  const RegisterFormField({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Form(
       child: Column(
-              children: [
-                CerebroTextFormField(
-                  controller: TextEditingController(), 
-                  text: 'Email Address',
-                  icon: Icons.email,
-                ),
-                SizedBox(height: 12), // Margin
-                CerebroTextFormField(
-                  controller: TextEditingController(), 
-                  text: 'Password',
-                  icon: Icons.lock,
-                ),
-                SizedBox(height: 32), // Margin
-                CerebroElevatedBtn(
-                  onPressed: () => {}, 
-                  text: 'Login'
-                  ),
-                  SizedBox(height: 24), // Margin
-
-              ]
-            ),
+        children: [
+          CerebroTextFormField(
+            controller: TextEditingController(), 
+            text: 'Your Email Address',
+            icon: Icons.email,
+          ),
+          SizedBox(height: 12), // Margin
+          CerebroTextFormField(
+            controller: TextEditingController(), 
+            text: 'Your Name',
+            icon: Icons.account_box,
+          ),
+          SizedBox(height: 32), // Margin
+          CerebroElevatedBtn(
+            onPressed: () => {}, 
+            text: 'Sign Up'
+          ),
+          SizedBox(height: 24), // Margin
+        ],
+      ),
     );
   }
 }
 
-class LoginFooterContainer extends StatelessWidget {
-  const LoginFooterContainer({super.key});
-
-  @override
-  Widget build(BuildContext context) {
+class RegisterFooterContainer extends StatelessWidget {
+  const RegisterFooterContainer({super.key});
+Widget build(BuildContext context) {
     return Column(
 
       children: [
-         SizedBox(height: 12),
-        Text(
-          'Forgot Password?', 
-          style: TextStyle(
-            color: cerebroWhite
-          ),
-        ),
-         SizedBox(height: 12),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Don\'t have an account?',
+              'Already have an account?',
               style: TextStyle(
                 color: cerebroWhite
                 ),
@@ -152,10 +147,10 @@ class LoginFooterContainer extends StatelessWidget {
             SizedBox(width: 12),
             GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                 },
                 child: Text(
-                  'Create an Account',
+                  'Log-in',
                   style: TextStyle(
                     color: cerebroWhite,
                     fontWeight: FontWeight.w700,
