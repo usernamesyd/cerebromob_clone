@@ -1,16 +1,16 @@
 import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
 import 'package:cerebro_mobile/atoms/cerebro_textform_field.dart';
+import 'package:cerebro_mobile/atoms/cerebro_passwordform_field.dart';
 import 'package:cerebro_mobile/atoms/cerebro_whiteback_btn.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/theme/texts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'registerpassword_page.dart';
 import 'login_page.dart';
 
-class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
+class RegisterPasswordPage extends StatelessWidget {
+  const RegisterPasswordPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +94,12 @@ class RegisterFormField extends StatelessWidget {
         children: [
           CerebroTextFormField(
             controller: TextEditingController(), 
+            text: 'School Code',
+            icon: Icons.school,
+          ),
+          SizedBox(height: 12),
+          CerebroTextFormField(
+            controller: TextEditingController(), 
             text: 'Your Email Address',
             icon: Icons.email,
           ),
@@ -103,15 +109,22 @@ class RegisterFormField extends StatelessWidget {
             text: 'Your Name',
             icon: Icons.account_box,
           ),
+          SizedBox(height: 12),
+          CerebroPasswordFormField(
+            controller: TextEditingController(), 
+            hint: 'Password',
+            icon: Icons.lock,
+          ),
+          SizedBox(height: 12),
+          CerebroPasswordFormField(
+            controller: TextEditingController(), 
+            hint: 'Confirm Password',
+            icon: Icons.lock,
+          ),
           SizedBox(height: 32), // Margin
           CerebroElevatedBtn(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => RegisterPasswordPage()), // Replace RegisterPasswordPage with the actual name of your password page class
-              );
-            },
-            text: 'Sign Up',
+            onPressed: () => {}, 
+            text: 'Confirm'
           ),
           SizedBox(height: 24), // Margin
         ],

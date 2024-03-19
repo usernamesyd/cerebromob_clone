@@ -1,5 +1,6 @@
 import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
 import 'package:cerebro_mobile/atoms/cerebro_textform_field.dart';
+import 'package:cerebro_mobile/atoms/cerebro_passwordform_field.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/theme/texts.dart';
 import 'package:flutter/cupertino.dart';
@@ -106,9 +107,9 @@ class LoginFormField extends StatelessWidget {
                   icon: Icons.email,
                 ),
                 SizedBox(height: 12), // Margin
-                CerebroTextFormField(
+                CerebroPasswordFormField(
                   controller: TextEditingController(), 
-                  text: 'Password',
+                  hint: 'Password',
                   icon: Icons.lock,
                 ),
                 SizedBox(height: 32), // Margin
