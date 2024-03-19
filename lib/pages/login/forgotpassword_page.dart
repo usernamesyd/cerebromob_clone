@@ -83,7 +83,7 @@ class SchoolHeaderContainer extends StatelessWidget {
           textAlign: TextAlign.justify,
           ),
           Container(
-            margin: EdgeInsets.only(top: 50.0),
+            margin: EdgeInsets.only(top: 48.0),
             child: Center(
               child: Image(image: AssetImage('assets/images/forgotpasswordpage1.png')),
             ),
@@ -99,7 +99,7 @@ class ForgotPasswordContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 28, vertical: 30),
+      padding: EdgeInsets.symmetric(horizontal: 28, vertical: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -110,7 +110,7 @@ class ForgotPasswordContainer extends StatelessWidget {
           //   ),
           //   textAlign: TextAlign.left,
           // ),
-          SizedBox(height: 5), // Margin
+          SizedBox(height: 8), // Margin
           ForgotPasswordField(),
         ],
       )
