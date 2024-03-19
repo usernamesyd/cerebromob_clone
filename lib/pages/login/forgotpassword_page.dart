@@ -1,14 +1,15 @@
 import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
 import 'package:cerebro_mobile/atoms/cerebro_textform_field.dart';
-import 'package:cerebro_mobile/pages/login/forgotpassword_page.dart';
+import 'package:cerebro_mobile/atoms/cerebro_whiteback_btn.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/theme/texts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'forgotpassword2_page.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class ForgotPasswordPage extends StatelessWidget {
+  const ForgotPasswordPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +27,10 @@ class LoginPage extends StatelessWidget {
           )
         ),
         child: ListView(children: [
+          TopNavigation(),
           SchoolHeaderContainer(),
-          LoginContainer(), 
-          LoginFooterContainer()
+          ForgotPasswordContainer(), 
+          // ForgotPasswordFooterContainer()
         ],),
       ),
 
@@ -41,6 +43,18 @@ class LoginPage extends StatelessWidget {
     return const Placeholder();
   }
 
+class TopNavigation extends StatelessWidget {
+  const TopNavigation({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 28, vertical: 40),
+      child: const WhiteBackButton(),
+    );
+  }
+}  
+
 class SchoolHeaderContainer extends StatelessWidget {
   const SchoolHeaderContainer({super.key});
 
@@ -48,52 +62,65 @@ class SchoolHeaderContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(horizontal: 28, vertical: 80),
+      padding: EdgeInsets.symmetric(horizontal: 28),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image(image: AssetImage('assets/images/SchoolLogo.png')),
+          // Image(image: AssetImage('assets/images/SchoolLogo.png')),
           SizedBox(height: 12),
           Text(
-            'Welcome to ABC School of Cavite!',
-            style: poppinsH3.copyWith(
+            'Email Address Here',
+            style: poppinsH2.copyWith(
               color: cerebroWhite,
             ),
-            textAlign: TextAlign.center,
-          )
+            textAlign: TextAlign.left,
+          ),
+          Text(
+            'To reset your password kindly enter your email address and an email with the reset link will be sent to you',
+          style: poppinsParagraph.copyWith(
+            color: cerebroWhite,
+          ),
+          textAlign: TextAlign.justify,
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 48.0),
+            child: Center(
+              child: Image(image: AssetImage('assets/images/forgotpassword1.png')),
+            ),
+          ),
         ],),
     );
   }
 }
 
-class LoginContainer extends StatelessWidget {
-  const LoginContainer({super.key});
+class ForgotPasswordContainer extends StatelessWidget {
+  const ForgotPasswordContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 28, vertical: 24),
+      padding: EdgeInsets.symmetric(horizontal: 28, vertical: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Login to CEREBRO®',
-            style: poppinsH5.copyWith(
-            color: cerebroWhite,
-            ),
-            textAlign: TextAlign.left,
-          ),
-          SizedBox(height: 24), // Margin
-          LoginFormField(),
+          // Text(
+          //   'Login to CEREBRO®',
+          //   style: poppinsH5.copyWith(
+          //   color: cerebroWhite,
+          //   ),
+          //   textAlign: TextAlign.left,
+          // ),
+          SizedBox(height: 8), // Margin
+          ForgotPasswordField(),
         ],
       )
     );
   }
 }
 
-class LoginFormField extends StatelessWidget {
-  const LoginFormField({super.key});
+class ForgotPasswordField extends StatelessWidget {
+  const ForgotPasswordField({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -103,18 +130,23 @@ class LoginFormField extends StatelessWidget {
                 CerebroTextFormField(
                   controller: TextEditingController(), 
                   text: 'Email Address',
-                  icon: Icons.email,
+                  icon: Icons.person,
                 ),
-                SizedBox(height: 12), // Margin
-                CerebroTextFormField(
-                  controller: TextEditingController(), 
-                  text: 'Password',
-                  icon: Icons.lock,
-                ),
+                // SizedBox(height: 12), // Margin
+                // CerebroTextFormField(
+                //   controller: TextEditingController(), 
+                //   text: 'Password',
+                //   icon: Icons.lock,
+                // ),
                 SizedBox(height: 32), // Margin
                 CerebroElevatedBtn(
-                  onPressed: () => {}, 
-                  text: 'Login'
+                  onPressed: () => {
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ForgotPassword2Page()),
+                    )
+                  }, 
+                  text: 'Reset Password'
                   ),
                   SizedBox(height: 24), // Margin
 
@@ -124,8 +156,8 @@ class LoginFormField extends StatelessWidget {
   }
 }
 
-class LoginFooterContainer extends StatelessWidget {
-  const LoginFooterContainer({super.key});
+class ForgotPasswordFooterContainer extends StatelessWidget {
+  const ForgotPasswordFooterContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -133,19 +165,11 @@ class LoginFooterContainer extends StatelessWidget {
 
       children: [
          SizedBox(height: 12),
-        GestureDetector(
-          onTap: () {
-            Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
-                    );
-                 },
-          child: Text(
+        Text(
           'Forgot Password?', 
           style: TextStyle(
             color: cerebroWhite
           ),
-        ),
         ),
          SizedBox(height: 12),
         Row(
