@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "967166529615",
+    "project_id": "cerebro-plus-mobile",
+    "storage_bucket": "cerebro-plus-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967166529615:android:f2a8bec50e39dd04d69a3a",
+        "android_client_info": {
+          "package_name": "com.cerebro.cerebro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrFvKXmInHUrQcda1EFuZDVVzpzO0gxGw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
