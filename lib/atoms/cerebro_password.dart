@@ -12,7 +12,7 @@ class CerebroPassword extends StatefulWidget {
     required this.controller,
     required this.text,
     this.icon,
-    this.isPassword = false,  
+    this.isPassword = false,
   }) : super(key: key);
 
   @override
@@ -20,33 +20,38 @@ class CerebroPassword extends StatefulWidget {
 }
 
 class _CerebroPasswordState extends State<CerebroPassword> {
-  bool _obscureText = true;
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: _obscureText,
+      obscureText: _isObscure,
       controller: widget.controller,
       decoration: InputDecoration(
-        prefixIcon: widget.icon != null ? Icon(widget.icon, color: cerebroBlue200) : null,
-        suffixIcon: widget.isPassword
-            ? Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              child: IconButton(
-                  icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
-                  color: cerebroBlue200,
-                  onPressed: () {
-                    setState(() {
-                      _obscureText = !_obscureText;
-                    });
-                  },
-                ),
-            )
+        prefixIcon: widget.icon != null
+            ? Icon(
+                widget.icon,
+                color: cerebroBlue200,
+              )
             : null,
+        suffixIcon: GestureDetector(
+          onTap: () {
+            setState(() {
+              _isObscure = !_isObscure;
+            });
+          },
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24),
+            child: Icon(
+              _isObscure ? Icons.visibility_rounded : Icons.visibility_off_rounded,
+              color: cerebroBlue200,
+            ),
+          ),
+        ),
         contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 14),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
-          borderSide: BorderSide.none, 
+          borderSide: BorderSide.none,
         ),
         fillColor: cerebroWhite,
         filled: true,
