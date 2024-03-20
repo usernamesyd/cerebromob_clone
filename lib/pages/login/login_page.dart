@@ -1,4 +1,6 @@
 import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
+import 'package:cerebro_mobile/atoms/cerebro_elevated_btn_outlined.dart';
+import 'package:cerebro_mobile/atoms/cerebro_elevated_btn_white.dart';
 import 'package:cerebro_mobile/atoms/cerebro_textform_field.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/theme/texts.dart';
@@ -111,12 +113,11 @@ class LoginFormField extends StatelessWidget {
                   icon: Icons.lock,
                 ),
                 SizedBox(height: 32), // Margin
-                CerebroElevatedBtn(
+                CerebroElevatedBtnWhite(
                   onPressed: () => {}, 
                   text: 'Login'
                   ),
                   SizedBox(height: 24), // Margin
-
               ]
             ),
     );
