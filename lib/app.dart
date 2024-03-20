@@ -14,7 +14,7 @@ class CerebroMobileApp extends StatelessWidget {
         fontFamily: 'Poppins',
         primaryColor: cerebroBlue100,
       ),
-      home: LoginPage(),
+      home: SplashPage(),
     );
   }
 }

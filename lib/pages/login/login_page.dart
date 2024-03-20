@@ -113,7 +113,7 @@ class LoginFormField extends StatelessWidget {
                   icon: Icons.lock,
                 ),
                 SizedBox(height: 32), // Margin
-                CerebroElevatedBtnWhite(
+                CerebroElevatedBtn(
                   onPressed: () => {}, 
                   text: 'Login'
                   ),
