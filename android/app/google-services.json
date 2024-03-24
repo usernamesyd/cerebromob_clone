@@ -1,15 +1,16 @@
 {
   "project_info": {
     "project_number": "967166529615",
+    "firebase_url": "https://cerebro-plus-mobile-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "cerebro-plus-mobile",
     "storage_bucket": "cerebro-plus-mobile.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:967166529615:android:f2a8bec50e39dd04d69a3a",
+        "mobilesdk_app_id": "1:967166529615:android:4eabc8b81503c110d69a3a",
         "android_client_info": {
-          "package_name": "com.cerebro.cerebro"
+          "package_name": "com.example.cerebro_mobile"
         }
       },
       "oauth_client": [],

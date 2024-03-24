@@ -1,3 +1,16 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Classpath for the Google Services plugin
+        classpath "com.google.gms:google-services:4.4.1"
+        // Add other classpath dependencies for build scripts here
+    }
+}
+
 allprojects {
     repositories {
         google()
@@ -8,8 +21,6 @@ allprojects {
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
     project.evaluationDependsOn(':app')
 }
 
