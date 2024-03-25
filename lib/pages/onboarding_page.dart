@@ -1,4 +1,5 @@
 import 'package:cerebro_mobile/atoms/cerebro_elevated_btn_white.dart';
+import 'package:cerebro_mobile/pages/login/login_page.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,17 @@ class OnboardingScreenState extends State<OnboardingScreen> {
       backgroundColor:cerebroBlue200,
       body: Stack(
         children: [
+        Container(
+          decoration: BoxDecoration(
+            gradient:LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              cerebroBlue200, Color.fromRGBO(102, 143, 183, 1)
+            ]
+          )
+          ),
+        ),
           PageView(
             controller: _pageController,
             onPageChanged: (int page) {
@@ -95,7 +107,7 @@ class Screen1 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset('assets/images/classroom.png'),
-          SizedBox(height: 10.0),
+          SizedBox(height: 20.0),
           Text(
             'Welcome to CEREBRO®!',
             style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold,color:cerebroWhite),
@@ -121,7 +133,7 @@ class Screen2 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset('assets/images/teacher_time.png'),
-          SizedBox(height: 10.0),
+          SizedBox(height: 20.0),
           Text(
             'Equip Your Teachers With the Right Tools',
             textAlign: TextAlign.center,
@@ -148,7 +160,7 @@ class Screen3 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset('assets/images/collaboration.png'),
-          SizedBox(height: 10.0),
+          SizedBox(height: 20.0),
           Text(
             'Integrated School Management',
             textAlign: TextAlign.center,
@@ -162,9 +174,13 @@ class Screen3 extends StatelessWidget {
           ),
             SizedBox(height: 20.0),
           CerebroElevatedBtnWhite(
-                  onPressed: () => {}, 
-                  text: 'Get Started'
-                  ),
+        onPressed: () {
+          Navigator.pushReplacement(context, 
+            MaterialPageRoute(builder: (context) => LoginPage())
+          );
+        }, 
+        text: 'Get Started'
+      ),
         ],
       ),
     );
