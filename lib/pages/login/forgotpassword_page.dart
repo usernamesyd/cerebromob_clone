@@ -4,9 +4,11 @@ import 'package:cerebro_mobile/atoms/cerebro_whiteback_btn.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/theme/texts.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'forgotpassword2_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});
@@ -119,8 +121,36 @@ class ForgotPasswordContainer extends StatelessWidget {
   }
 }
 
-class ForgotPasswordField extends StatelessWidget {
+class ForgotPasswordField extends StatefulWidget {
   const ForgotPasswordField({super.key});
+
+  @override
+  _ForgotPasswordFieldState createState() => _ForgotPasswordFieldState();
+}
+
+  class _ForgotPasswordFieldState extends State<ForgotPasswordField> {
+  final TextEditingController _emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  Future passwordReset() async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: _emailController.text.trim());
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      showDialog(
+        context: context, 
+        builder: (context) {
+          return AlertDialog(
+            content: Text(e.message.toString()),
+          );
+        });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +158,7 @@ class ForgotPasswordField extends StatelessWidget {
       child: Column(
               children: [
                 CerebroTextFormField(
-                  controller: TextEditingController(), 
+                  controller: _emailController, 
                   text: 'Email Address',
                   icon: Icons.person,
                 ),
@@ -140,12 +170,7 @@ class ForgotPasswordField extends StatelessWidget {
                 // ),
                 SizedBox(height: 32), // Margin
                 CerebroElevatedBtn(
-                  onPressed: () => {
-                    Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ForgotPassword2Page()),
-                    )
-                  }, 
+                  onPressed: passwordReset, 
                   text: 'Reset Password'
                   ),
                   SizedBox(height: 24), // Margin

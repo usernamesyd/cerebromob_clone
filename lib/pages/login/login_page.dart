@@ -1,11 +1,16 @@
 import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
+import 'package:cerebro_mobile/atoms/cerebro_passwordform_field.dart';
 import 'package:cerebro_mobile/atoms/cerebro_textform_field.dart';
 import 'package:cerebro_mobile/pages/login/forgotpassword_page.dart';
+import 'package:cerebro_mobile/pages/login/home_page.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/theme/texts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'forgotpassword3_page.dart';
+import 'register_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -68,7 +73,7 @@ class SchoolHeaderContainer extends StatelessWidget {
 }
 
 class LoginContainer extends StatelessWidget {
-  const LoginContainer({super.key});
+  const LoginContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -92,8 +97,43 @@ class LoginContainer extends StatelessWidget {
   }
 }
 
-class LoginFormField extends StatelessWidget {
+class LoginFormField extends StatefulWidget {
   const LoginFormField({super.key});
+
+  @override
+  _LoginFormFieldState createState() => _LoginFormFieldState();
+}
+
+class _LoginFormFieldState extends State<LoginFormField> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  Future<void> _login() async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
+      );
+      // Login successful, navigate to next screen or perform desired actions
+      if (userCredential.user != null) {
+        Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                    );  
+      }
+    } on FirebaseAuthException catch (e) {
+      // Handle login errors (e.g., invalid credentials)
+      print(e);
+      showDialog(
+        context: context, 
+        builder: (context) {
+          return AlertDialog(
+            content: Text(e.message.toString()),
+          );
+        });
+      // You can display an error message to the user here
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,26 +141,31 @@ class LoginFormField extends StatelessWidget {
       child: Column(
               children: [
                 CerebroTextFormField(
-                  controller: TextEditingController(), 
+                  controller: _emailController, 
                   text: 'Email Address',
                   icon: Icons.email,
                 ),
                 SizedBox(height: 12), // Margin
-                CerebroTextFormField(
-                  controller: TextEditingController(), 
-                  text: 'Password',
+                CerebroPasswordFormField(
+                  controller: _passwordController, 
+                  hint: 'Password',
                   icon: Icons.lock,
                 ),
                 SizedBox(height: 32), // Margin
                 CerebroElevatedBtn(
-                  onPressed: () => {}, 
+                  onPressed: _login, 
                   text: 'Login'
                   ),
                   SizedBox(height: 24), // Margin
-
               ]
             ),
     );
+  }
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }
 
@@ -158,11 +203,16 @@ class LoginFooterContainer extends StatelessWidget {
                 ),
               ),
             SizedBox(width: 12),
-            Text(
-              'Create an Account',
-              style: TextStyle(
-                color: cerebroWhite,
-                fontWeight: FontWeight.w700,
+            GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
+                },
+                child: Text(
+                  'Create an Account',
+                  style: TextStyle(
+                    color: cerebroWhite,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
             ],
