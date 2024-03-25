@@ -1,5 +1,4 @@
 import 'package:cerebro_mobile/atoms/cerebro_elevated_btn_white.dart';
-import 'package:cerebro_mobile/pages/login/login_page.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
 import 'package:flutter/material.dart';
@@ -32,17 +31,6 @@ class OnboardingScreenState extends State<OnboardingScreen> {
       backgroundColor:cerebroBlue200,
       body: Stack(
         children: [
-        Container(
-          decoration: BoxDecoration(
-            gradient:LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              cerebroBlue200, Color.fromRGBO(102, 143, 183, 1)
-            ]
-          )
-          ),
-        ),
           PageView(
             controller: _pageController,
             onPageChanged: (int page) {
@@ -85,7 +73,7 @@ class OnboardingScreenState extends State<OnboardingScreen> {
       width: isCurrentPage ? 16.0 : 10.0,
       height: isCurrentPage ? 16.0 : 10.0,
       decoration: BoxDecoration(
-        color: isCurrentPage ? cerebroBlue100 : const Color.fromARGB(255, 255, 255, 255),
+        color: isCurrentPage ? cerebroBlue100 : Colors.grey[400],
         shape: BoxShape.circle,
       ),
     );
@@ -174,13 +162,9 @@ class Screen3 extends StatelessWidget {
           ),
             SizedBox(height: 20.0),
           CerebroElevatedBtnWhite(
-        onPressed: () {
-          Navigator.pushReplacement(context, 
-            MaterialPageRoute(builder: (context) => LoginPage())
-          );
-        }, 
-        text: 'Get Started'
-      ),
+                  onPressed: () => {}, 
+                  text: 'Get Started'
+                  ),
         ],
       ),
     );
