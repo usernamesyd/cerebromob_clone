@@ -2,7 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/theme/texts.dart';
 
-class AnnouncementCard extends StatelessWidget {
+class AnnouncementCard extends StatefulWidget {
+  final String adminName;
+  final String announcementTitle;
+  final String announcementDateTime;
+  final String announcementDetails;
+
+  AnnouncementCard({
+    required this.adminName,
+    required this.announcementTitle,
+    required this.announcementDateTime,
+    required this.announcementDetails,
+  });
+
+  @override
+  _AnnouncementCardState createState() => _AnnouncementCardState();
+}
+
+class _AnnouncementCardState extends State<AnnouncementCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -18,19 +35,18 @@ class AnnouncementCard extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 12),
               child: Container(
                 alignment: Alignment.topLeft,
-                width: 25, // Adjust width as needed
-                height: 25, // Adjust height as needed
+                width: 25,
+                height: 25,
                 clipBehavior: Clip.antiAlias,
-                 decoration: BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     image: AssetImage('assets/images/pfp.png'),
-                    fit: BoxFit.cover, // Adjust fit as needed
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
             ),
-
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
@@ -38,34 +54,42 @@ class AnnouncementCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'ABC School Admin',
-                      style: poppinsH6.copyWith(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold)
+                      widget.adminName,
+                      style: poppinsH6.copyWith(
+                          color: Colors.black,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 2),
                     Text(
-                      'Chinese New Year',
-                      style: poppinsH6.copyWith(color: Colors.black, fontSize: 10, fontWeight: FontWeight.bold)
+                      widget.announcementTitle,
+                      style: poppinsH6.copyWith(
+                          color: Colors.black,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold),
                     ),
-                     SizedBox(height: 4),
+                    SizedBox(height: 4),
                     Text(
-                      'October 23, 2024 01:14:28 AM',
-                      style: poppinsH6.copyWith(color: Colors.black, fontSize: 8, fontWeight: FontWeight.normal)
+                      widget.announcementDateTime,
+                      style: poppinsH6.copyWith(
+                          color: Colors.black,
+                          fontSize: 8,
+                          fontWeight: FontWeight.normal),
                     ),
-                    SizedBox(height: 8), 
+                    SizedBox(height: 8),
                     SizedBox(
-                        width: double.maxFinite, 
-                        child: Text(
-                          "Get ready for an exciting year ahead! Classes for the new academic year will begin on August 28th. We hope you had a fantastic break and are eager to dive into your studies. Remember to arrive on time and come prepared for an engaging first day. If you're new to our school, an orientation session will be held to familiarize you and your parents/guardians with our policies and resources. Look out for more details soon! Wishing you a successful and fulfilling academic year!",
-                          textAlign: TextAlign.justify,
-                          style: poppinsH6.copyWith(
-                              color: Colors.black,
-                              fontSize: 8,
-                              fontWeight: FontWeight.normal
-                          ),
-                          softWrap: true,
-                          maxLines: null,  
-                        ),
+                      width: double.maxFinite,
+                      child: Text(
+                        widget.announcementDetails,
+                        textAlign: TextAlign.justify,
+                        style: poppinsH6.copyWith(
+                            color: Colors.black,
+                            fontSize: 8,
+                            fontWeight: FontWeight.normal),
+                        softWrap: true,
+                        maxLines: null,
                       ),
+                    ),
                   ],
                 ),
               ),
