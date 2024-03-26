@@ -1,9 +1,14 @@
+import 'package:cerebro_mobile/pages/dashboard.dart';
+import 'package:cerebro_mobile/pages/login/change_profile.dart';
+import 'package:cerebro_mobile/pages/profile_screen.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class CerebroNavigationDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.65, // Adjust the width as needed
       child: Drawer(
@@ -60,7 +65,8 @@ class CerebroNavigationDrawer extends StatelessWidget {
                 leading: Icon(Icons.dashboard, color: Colors.white),
                 title: Text('Dashboard', style: TextStyle(color: Colors.white)),
                 onTap: () {
-                  Navigator.pushNamed(context, '/dashboard'); // Navigate to Dashboard
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DashboardPage())); // Navigate to Dashboard
                 },
               ),
               ListTile(

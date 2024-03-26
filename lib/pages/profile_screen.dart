@@ -1,12 +1,16 @@
 import 'package:cerebro_mobile/atoms/navigation_drawer.dart';
 import 'package:cerebro_mobile/organisms/cerebro_appbar.dart';
+import 'package:cerebro_mobile/pages/login/change_profile.dart';
+import 'package:cerebro_mobile/pages/login/login_page.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileScreen extends StatelessWidget {
   final String userName = 'Rafaela Aquino';
   final String userRole = 'Student';
   final String profileImagePath = 'assets/images/profilepic.png';
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,10 @@ class ProfileScreen extends StatelessWidget {
                         children: [
                           Text(
                             userName,
-                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color:cerebroBlue300),
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: cerebroBlue300),
                           ),
                           Text(userRole),
                         ],
@@ -57,16 +64,19 @@ class ProfileScreen extends StatelessWidget {
                             foregroundColor: cerebroWhite,
                             backgroundColor: cerebroBlue200,
                             shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
                           ),
                           onPressed: () {
                             // Handle change profile picture button press
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ChangeProfile()));
                           },
                           icon: Icon(Icons.camera),
                           label: Text('Change Profile Picture'),
                         ),
-                        
                       ),
                       SizedBox(height: 10),
                       SizedBox(
@@ -76,8 +86,8 @@ class ProfileScreen extends StatelessWidget {
                             foregroundColor: cerebroWhite,
                             backgroundColor: cerebroBlue200,
                             shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
                           ),
                           onPressed: () {
                             // Handle change password button press
@@ -94,15 +104,15 @@ class ProfileScreen extends StatelessWidget {
                             foregroundColor: cerebroWhite,
                             backgroundColor: cerebroBlue200,
                             shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
                           ),
                           onPressed: () {
                             // Handle log out button press
+                            signOut(context);
                           },
                           icon: Icon(Icons.logout),
                           label: Text('Log Out'),
-                          
                         ),
                       ),
                     ],
@@ -114,5 +124,13 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void signOut(BuildContext context) async { 
+    await auth.signOut();
+    Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
   }
 }

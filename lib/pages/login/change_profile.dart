@@ -99,7 +99,7 @@ class ChangeProfile extends StatelessWidget {
                   children: [
                     CerebroOutlinedBtn(
                       onPressed: () => {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()))
+                        Navigator.pop(context)
                       },
                       text: 'Close',
                     ),

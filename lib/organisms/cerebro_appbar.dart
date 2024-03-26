@@ -1,3 +1,5 @@
+import 'package:cerebro_mobile/pages/login/change_profile.dart';
+import 'package:cerebro_mobile/pages/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class CerebroAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -17,12 +19,13 @@ class CerebroAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       leading: IconButton(
         icon: Icon(Icons.menu, color: Colors.white, size: 40),
-               onPressed: () {
+        onPressed: () {
           // Open the navigation drawer using Scaffold.of(context).openDrawer()
           Scaffold.of(context).openDrawer();
         },
       ),
-      title: Text(title, style: TextStyle(color: Colors.white)), // White title text
+      title: Text(title,
+          style: TextStyle(color: Colors.white)), // White title text
       flexibleSpace: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -37,7 +40,10 @@ class CerebroAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         TextButton(
-          onPressed: () {}, // Handle profile actions here
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ProfileScreen()));
+          }, // Handle profile actions here
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
