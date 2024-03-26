@@ -1,15 +1,15 @@
 import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
 import 'package:cerebro_mobile/atoms/cerebro_textform_field.dart';
 import 'package:cerebro_mobile/atoms/cerebro_passwordform_field.dart';
+import 'package:cerebro_mobile/pages/dashboard.dart';
 import 'package:cerebro_mobile/pages/login/forgotpassword_page.dart';
-import 'package:cerebro_mobile/pages/login/home_page.dart';
+import 'package:cerebro_mobile/pages/profile_screen.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/theme/texts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'forgotpassword3_page.dart';
 import 'register_page.dart';
 
 class LoginPage extends StatelessWidget {
@@ -17,34 +17,33 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              cerebroBlue200, Color.fromRGBO(102, 143, 183, 1)
-            ]
-          )
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [cerebroBlue200, Color.fromRGBO(102, 143, 183, 1)])),
+        child: ListView(
+          children: [
+            SchoolHeaderContainer(),
+            LoginContainer(),
+            LoginFooterContainer()
+          ],
         ),
-        child: ListView(children: [
-          SchoolHeaderContainer(),
-          LoginContainer(), 
-          LoginFooterContainer()
-        ],),
       ),
-
-    );
+    ));
   }
 }
 
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
+@override
+Widget build(BuildContext context) {
+  return const Placeholder();
+}
 
 class SchoolHeaderContainer extends StatelessWidget {
   const SchoolHeaderContainer({super.key});
@@ -67,7 +66,8 @@ class SchoolHeaderContainer extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           )
-        ],),
+        ],
+      ),
     );
   }
 }
@@ -78,22 +78,21 @@ class LoginContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 28, vertical: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Login to CEREBRO®',
-            style: poppinsH5.copyWith(
-            color: cerebroWhite,
+        padding: EdgeInsets.symmetric(horizontal: 28, vertical: 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Login to CEREBRO®',
+              style: poppinsH5.copyWith(
+                color: cerebroWhite,
+              ),
+              textAlign: TextAlign.left,
             ),
-            textAlign: TextAlign.left,
-          ),
-          SizedBox(height: 24), // Margin
-          LoginFormField(),
-        ],
-      )
-    );
+            SizedBox(height: 24), // Margin
+            LoginFormField(),
+          ],
+        ));
   }
 }
 
@@ -110,27 +109,28 @@ class _LoginFormFieldState extends State<LoginFormField> {
 
   Future<void> _login() async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
       // Login successful, navigate to next screen or perform desired actions
       if (userCredential.user != null) {
         Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
-                    );  
+          context,
+          MaterialPageRoute(builder: (context) => DashboardPage()),
+        );
       }
     } on FirebaseAuthException catch (e) {
       // Handle login errors (e.g., invalid credentials)
       print(e);
       showDialog(
-        context: context, 
-        builder: (context) {
-          return AlertDialog(
-            content: Text(e.message.toString()),
-          );
-        });
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Text(e.message.toString()),
+            );
+          });
       // You can display an error message to the user here
     }
   }
@@ -138,29 +138,25 @@ class _LoginFormFieldState extends State<LoginFormField> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      child: Column(
-              children: [
-                CerebroTextFormField(
-                  controller: _emailController, 
-                  text: 'Email Address',
-                  icon: Icons.email,
-                ),
-                SizedBox(height: 12), // Margin
-                CerebroPasswordFormField(
-                  controller: _passwordController, 
-                  hint: 'Password',
-                  icon: Icons.lock,
-                ),
-                SizedBox(height: 32), // Margin
-                CerebroElevatedBtn(
-                  onPressed: _login, 
-                  text: 'Login'
-                  ),
-                  SizedBox(height: 24), // Margin
-              ]
-            ),
+      child: Column(children: [
+        CerebroTextFormField(
+          controller: _emailController,
+          text: 'Email Address',
+          icon: Icons.email,
+        ),
+        SizedBox(height: 12), // Margin
+        CerebroPasswordFormField(
+          controller: _passwordController,
+          hint: 'Password',
+          icon: Icons.lock,
+        ),
+        SizedBox(height: 32), // Margin
+        CerebroElevatedBtn(onPressed: _login, text: 'Login'),
+        SizedBox(height: 24), // Margin
+      ]),
     );
   }
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -175,68 +171,65 @@ class LoginFooterContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-
       children: [
-         SizedBox(height: 12),
+        SizedBox(height: 12),
         GestureDetector(
           onTap: () {
             Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
-                    );
-                 },
+              context,
+              MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+            );
+          },
           child: Text(
-          'Forgot Password?', 
-          style: TextStyle(
-            color: cerebroWhite
+            'Forgot Password?',
+            style: TextStyle(color: cerebroWhite),
           ),
         ),
-        ),
-         SizedBox(height: 12),
+        SizedBox(height: 12),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'Don\'t have an account?',
-              style: TextStyle(
-                color: cerebroWhite
-                ),
-              ),
+              style: TextStyle(color: cerebroWhite),
+            ),
             SizedBox(width: 12),
             GestureDetector(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
-                },
-                child: Text(
-                  'Create an Account',
-                  style: TextStyle(
-                    color: cerebroWhite,
-                    fontWeight: FontWeight.w700,
-                  ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RegisterPage()));
+              },
+              child: Text(
+                'Create an Account',
+                style: TextStyle(
+                  color: cerebroWhite,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-            ],
-          ),
-          SizedBox(height: 12),
+            ),
+          ],
+        ),
+        SizedBox(height: 12),
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               'Powered by:',
               style: TextStyle(color: cerebroWhite, fontSize: 12),
-              ),
+            ),
             SizedBox(
               height: 72,
               child: Image.asset(
                 'assets/images/cerebro-splash.png',
                 fit: BoxFit.contain,
-                ),
+              ),
             ),
           ],
         ),
         SizedBox(height: 12),
-      ]
-      ,
+      ],
     );
   }
 }

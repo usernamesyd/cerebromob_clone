@@ -1,3 +1,4 @@
+import 'package:cerebro_mobile/atoms/navigation_drawer.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/theme/texts.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CerebroAppBar(title: "Dashboard"),
+      drawer: CerebroNavigationDrawer(),
       body: Container(
         color: cerebroWhite,
         height: MediaQuery.of(context).size.height,
