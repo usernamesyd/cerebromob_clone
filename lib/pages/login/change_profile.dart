@@ -1,4 +1,5 @@
 import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
+import 'package:cerebro_mobile/atoms/navigation_drawer.dart';
 import 'package:cerebro_mobile/organisms/cerebro_appbar.dart';
 import 'package:cerebro_mobile/pages/login/login_page.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
@@ -11,6 +12,7 @@ class ChangeProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CerebroNavigationDrawer(),
       appBar: CerebroAppBar(title: 'ABC School of Cavite'),
       body: Center(
         child: Padding(
