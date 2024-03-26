@@ -123,7 +123,7 @@ class _RegisterFormFieldState extends State<RegisterFormField> {
   try {
     final UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
       email: _emailController.text.trim(),
-      password: "yourChosenPassword", // Ensure you handle password input properly.
+      password: "user123", // Ensure you handle password input properly (implement deep linking)
     );
 
     // Assuming the user is created successfully, now we save the user's details to Realtime Database
