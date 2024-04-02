@@ -1,6 +1,7 @@
 import 'package:cerebro_mobile/organisms/cerebro_appbar.dart';
 import 'package:cerebro_mobile/pages/admission/admission-enrollment_page.dart';
 import 'package:cerebro_mobile/pages/admission/school_requirements_page.dart';
+import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
 import '../atoms/navigation_drawer.dart';
 
@@ -16,6 +17,9 @@ class AdmissionPage extends StatelessWidget {
           body: Column(
             children: <Widget>[
               TabBar(
+                indicatorColor: cerebroBlue200,
+                labelStyle: TextStyle(fontWeight: FontWeight.bold, color: cerebroBlue200),  //For Selected tab
+              unselectedLabelStyle: TextStyle(color: cerebroBlue200), //For Un-selected Tabs
                 tabs: [
                   Tab(text: 'School Requirements'),
                   Tab(text: 'Admission/Enrollment'),
