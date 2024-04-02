@@ -1,7 +1,10 @@
 import 'package:cerebro_mobile/organisms/admission_topbar.dart';
+import 'package:cerebro_mobile/organisms/request_topbar.dart';
 import 'package:cerebro_mobile/pages/dashboard.dart';
 import 'package:cerebro_mobile/pages/login/change_profile.dart';
+import 'package:cerebro_mobile/pages/login/mygrades1.dart';
 import 'package:cerebro_mobile/pages/profile_screen.dart';
+import 'package:cerebro_mobile/pages/request_page/request_form.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -82,7 +85,7 @@ class CerebroNavigationDrawer extends StatelessWidget {
                 title: Text('Admission', style: TextStyle(color: Colors.white)),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AdmissionPage())); // Navigate to Dashboard
+                      MaterialPageRoute(builder: (context) => AdmissionPage())); // Navigate to Admission
                 },
               ),
               ListTile(
@@ -103,14 +106,16 @@ class CerebroNavigationDrawer extends StatelessWidget {
                 leading: Icon(Icons.assignment, color: Colors.white),
                 title: Text('Grades', style: TextStyle(color: Colors.white)),
                 onTap: () {
-                  Navigator.pushNamed(context, '/grades'); // Navigate to Grades
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => myGradesPage1())); // Navigate to Grades
                 },
               ),
               ListTile(
                 leading: Icon(Icons.request_quote, color: Colors.white),
                 title: Text('Requests', style: TextStyle(color: Colors.white)),
                 onTap: () {
-                  Navigator.pushNamed(context, '/requests'); // Navigate to Requests
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => RequestPage())); // Navigate to Requests
                 },
               ),
             ],

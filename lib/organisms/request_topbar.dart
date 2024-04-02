@@ -20,8 +20,8 @@ class RequestPage extends StatelessWidget {
                 indicatorColor: cerebroBlue100,
                 labelColor: cerebroBlue100,
                 tabs: [
-                  Tab(text: 'School Requirements'),
-                  Tab(text: 'Admission/Enrollment'),
+                  Tab(text: 'Request Form'),
+                  Tab(text: 'Requests and Records'),
                 ],
               ),
               Expanded(
