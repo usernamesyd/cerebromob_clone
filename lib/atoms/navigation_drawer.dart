@@ -1,3 +1,4 @@
+import 'package:cerebro_mobile/organisms/admission-topbar.dart';
 import 'package:cerebro_mobile/pages/dashboard.dart';
 import 'package:cerebro_mobile/pages/login/change_profile.dart';
 import 'package:cerebro_mobile/pages/profile_screen.dart';
@@ -80,7 +81,8 @@ class CerebroNavigationDrawer extends StatelessWidget {
                 leading: Icon(Icons.school, color: Colors.white),
                 title: Text('Admission', style: TextStyle(color: Colors.white)),
                 onTap: () {
-                  Navigator.pushNamed(context, '/admission'); // Navigate to Admission
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AdmissionPage())); // Navigate to Admission
                 },
               ),
               ListTile(
