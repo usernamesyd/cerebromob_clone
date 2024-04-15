@@ -20,30 +20,27 @@ class ForgotPasswordPage extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              cerebroBlue200, Color.fromRGBO(102, 143, 183, 1)
-            ]
-          )
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [cerebroBlue200, Color.fromRGBO(102, 143, 183, 1)])),
+        child: ListView(
+          children: [
+            TopNavigation(),
+            SchoolHeaderContainer(),
+            ForgotPasswordContainer(),
+            // ForgotPasswordFooterContainer()
+          ],
         ),
-        child: ListView(children: [
-          TopNavigation(),
-          SchoolHeaderContainer(),
-          ForgotPasswordContainer(), 
-          // ForgotPasswordFooterContainer()
-        ],),
       ),
-
     );
   }
 }
 
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
+@override
+Widget build(BuildContext context) {
+  return const Placeholder();
+}
 
 class TopNavigation extends StatelessWidget {
   const TopNavigation({super.key});
@@ -55,7 +52,7 @@ class TopNavigation extends StatelessWidget {
       child: const WhiteBackButton(),
     );
   }
-}  
+}
 
 class SchoolHeaderContainer extends StatelessWidget {
   const SchoolHeaderContainer({super.key});
@@ -80,18 +77,20 @@ class SchoolHeaderContainer extends StatelessWidget {
           ),
           Text(
             'To reset your password kindly enter your email address and an email with the reset link will be sent to you',
-          style: poppinsParagraph.copyWith(
-            color: cerebroWhite,
-          ),
-          textAlign: TextAlign.justify,
+            style: poppinsParagraph.copyWith(
+              color: cerebroWhite,
+            ),
+            textAlign: TextAlign.justify,
           ),
           Container(
             margin: EdgeInsets.only(top: 48.0),
             child: Center(
-              child: Image(image: AssetImage('assets/images/forgotpassword1.png')),
+              child:
+                  Image(image: AssetImage('assets/images/forgotpassword1.png')),
             ),
           ),
-        ],),
+        ],
+      ),
     );
   }
 }
@@ -102,22 +101,21 @@ class ForgotPasswordContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 28, vertical: 32),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Text(
-          //   'Login to CEREBROÂ®',
-          //   style: poppinsH5.copyWith(
-          //   color: cerebroWhite,
-          //   ),
-          //   textAlign: TextAlign.left,
-          // ),
-          SizedBox(height: 8), // Margin
-          ForgotPasswordField(),
-        ],
-      )
-    );
+        padding: EdgeInsets.symmetric(horizontal: 28, vertical: 32),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Text(
+            //   'Login to CEREBROÂ®',
+            //   style: poppinsH5.copyWith(
+            //   color: cerebroWhite,
+            //   ),
+            //   textAlign: TextAlign.left,
+            // ),
+            SizedBox(height: 8), // Margin
+            ForgotPasswordField(),
+          ],
+        ));
   }
 }
 
@@ -128,7 +126,7 @@ class ForgotPasswordField extends StatefulWidget {
   _ForgotPasswordFieldState createState() => _ForgotPasswordFieldState();
 }
 
-  class _ForgotPasswordFieldState extends State<ForgotPasswordField> {
+class _ForgotPasswordFieldState extends State<ForgotPasswordField> {
   final TextEditingController _emailController = TextEditingController();
 
   @override
@@ -138,62 +136,75 @@ class ForgotPasswordField extends StatefulWidget {
   }
 
   Future passwordReset() async {
-    try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: _emailController.text.trim());
+    String email = _emailController.text.trim();
+    if (email.isEmpty) {
       showDialog(
         context: context,
-        builder: (BuildContext context) {
+        builder: (context) {
           return AlertDialog(
-            title: Text("Email Sent"),
-            content: Text("Please check your email."),
-            actions: [
-              TextButton(
-                child: Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop(); // Dismiss the dialog
-                },
-              ),
-            ],
+            content: Text("Please enter your email."),
+          );
+        },
+      );
+      return; // Exit the function early if the email field is empty
+    }
+
+    try {
+      // Attempt to send a password reset email without checking sign-in methods
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      print("Password reset email sent! Please check your email.");
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text("Password reset email sent! Please check your email."),
           );
         },
       );
     } on FirebaseAuthException catch (e) {
       print(e);
+      String errorMessage;
+      switch (e.code) {
+        case 'invalid-email':
+          errorMessage = "Please enter a valid email.";
+          break;
+        case 'network-request-failed':
+          errorMessage =
+              "A network error occurred. Please check your internet connection.";
+          break;
+        default:
+          errorMessage = "An unknown error occurred. Please try again.";
+      }
       showDialog(
-        context: context, 
+        context: context,
         builder: (context) {
           return AlertDialog(
-            content: Text(e.message.toString()),
+            content: Text(errorMessage),
           );
-        });
+        },
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      child: Column(
-              children: [
-                CerebroTextFormField(
-                  controller: _emailController, 
-                  text: 'Email Address',
-                  icon: Icons.person,
-                ),
-                // SizedBox(height: 12), // Margin
-                // CerebroTextFormField(
-                //   controller: TextEditingController(), 
-                //   text: 'Password',
-                //   icon: Icons.lock,
-                // ),
-                SizedBox(height: 32), // Margin
-                CerebroElevatedBtn(
-                  onPressed: passwordReset, 
-                  text: 'Reset Password'
-                  ),
-                  SizedBox(height: 24), // Margin
-
-              ]
-            ),
+      child: Column(children: [
+        CerebroTextFormField(
+          controller: _emailController,
+          text: 'Email Address',
+          icon: Icons.person,
+        ),
+        // SizedBox(height: 12), // Margin
+        // CerebroTextFormField(
+        //   controller: TextEditingController(),
+        //   text: 'Password',
+        //   icon: Icons.lock,
+        // ),
+        SizedBox(height: 32), // Margin
+        CerebroElevatedBtn(onPressed: passwordReset, text: 'Reset Password'),
+        SizedBox(height: 24), // Margin
+      ]),
     );
   }
 }
@@ -204,55 +215,49 @@ class ForgotPasswordFooterContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-
       children: [
-         SizedBox(height: 12),
+        SizedBox(height: 12),
         Text(
-          'Forgot Password?', 
-          style: TextStyle(
-            color: cerebroWhite
-          ),
+          'Forgot Password?',
+          style: TextStyle(color: cerebroWhite),
         ),
-         SizedBox(height: 12),
+        SizedBox(height: 12),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'Don\'t have an account?',
-              style: TextStyle(
-                color: cerebroWhite
-                ),
-              ),
+              style: TextStyle(color: cerebroWhite),
+            ),
             SizedBox(width: 12),
             Text(
               'Create an Account',
               style: TextStyle(
                 color: cerebroWhite,
                 fontWeight: FontWeight.w700,
-                ),
               ),
-            ],
-          ),
-          SizedBox(height: 12),
+            ),
+          ],
+        ),
+        SizedBox(height: 12),
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               'Powered by:',
               style: TextStyle(color: cerebroWhite, fontSize: 12),
-              ),
+            ),
             SizedBox(
               height: 72,
               child: Image.asset(
                 'assets/images/cerebro-splash.png',
                 fit: BoxFit.contain,
-                ),
+              ),
             ),
           ],
         ),
         SizedBox(height: 12),
-      ]
-      ,
+      ],
     );
   }
 }

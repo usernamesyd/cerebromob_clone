@@ -156,7 +156,7 @@ class _AdmissionEnrollmentPageState extends State<AdmissionEnrollmentPage> {
                               ),
                               padding: EdgeInsets.all(8.0),
                               child: Center(
-                                child: Text('1st Sem A.Y. 2022-2023',
+                                child: Text('1st Sem A.Y. 22-23',
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontSize: 12.0,
@@ -214,7 +214,7 @@ class _AdmissionEnrollmentPageState extends State<AdmissionEnrollmentPage> {
                               ),
                               padding: EdgeInsets.all(8.0),
                               child: Center(
-                                child: Text('2nd Sem A.Y. 2022-2023',
+                                child: Text('2nd Sem A.Y. 22-23',
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontSize: 12.0,
@@ -272,7 +272,7 @@ class _AdmissionEnrollmentPageState extends State<AdmissionEnrollmentPage> {
                               ),
                               padding: EdgeInsets.all(8.0),
                               child: Center(
-                                child: Text('1st Sem A.Y. 2023-2024',
+                                child: Text('1st Sem A.Y. 23-24',
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontSize: 12.0,
@@ -365,7 +365,7 @@ class _AdmissionEnrollmentPageState extends State<AdmissionEnrollmentPage> {
           //   ),
           // ),
           SizedBox(
-            height: 12,
+            height: 16,
           ),
           Container(
             width: boxWidth,
@@ -386,7 +386,9 @@ class _AdmissionEnrollmentPageState extends State<AdmissionEnrollmentPage> {
                         fontSize: 16.0,
                       ),
                       children: <TextSpan>[
-                        TextSpan(text: 'Admission Period'),
+                        TextSpan(
+                        text: 'Admission Period',
+                        style: TextStyle(color: Colors.black)),
                         TextSpan(
                           text: '*',
                           style: TextStyle(color: Colors.red),
@@ -397,10 +399,10 @@ class _AdmissionEnrollmentPageState extends State<AdmissionEnrollmentPage> {
                 ]),
                 SizedBox(height: 8),
                 Container(
-                  width: 400, // Set the width of the dropdown field
-                  height: 32, // Set the height of the dropdown field
+                  width: null, 
+                  height: 40,
                   child: DropdownButtonFormField<String>(
-                    isDense: true, // Makes the dropdown button smaller
+                    isExpanded: true,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.symmetric(
                           vertical: 8.0, horizontal: 12.0), // Custom padding
@@ -414,11 +416,15 @@ class _AdmissionEnrollmentPageState extends State<AdmissionEnrollmentPage> {
                     items: [
                       DropdownMenuItem(
                         value: '1_ay23-24',
-                        child: Text('1st Sem Academic Year 2023-2024'),
+                        child: Text('1st Sem Academic Year 23-24'),
                       ),
                       DropdownMenuItem(
                         value: '2_ay23-24',
-                        child: Text('2nd Sem Academic Year 2023-2024'),
+                        child: Text('2nd Sem Academic Year 23-24'),
+                      ),
+                      DropdownMenuItem(
+                        value: '1_ay24-25',
+                        child: Text('1st Sem Academic Year 24-25'),
                       ),
                     ],
                     onChanged: (String? newValue) {

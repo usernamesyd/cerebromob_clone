@@ -1,6 +1,7 @@
 import 'package:cerebro_mobile/atoms/navigation_drawer.dart';
 import 'package:cerebro_mobile/organisms/cerebro_appbar.dart';
 import 'package:cerebro_mobile/pages/login/change_profile.dart';
+import 'package:cerebro_mobile/pages/login/changepassword_screen.dart';
 import 'package:cerebro_mobile/pages/login/login_page.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
@@ -90,7 +91,10 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            // Handle change password button press
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ChangePasswordScreen()));
                           },
                           icon: Icon(Icons.lock),
                           label: Text('Change Password'),

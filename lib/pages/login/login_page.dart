@@ -122,16 +122,22 @@ class _LoginFormFieldState extends State<LoginFormField> {
         );
       }
     } on FirebaseAuthException catch (e) {
-      // Handle login errors (e.g., invalid credentials)
-      print(e);
+      // Handle errors
+      String errorMessage;
+      if (e.code == 'invalid-credential') {
+        errorMessage = 'Incorrect email/password. Please try again.';
+      } else {
+        errorMessage = 'Login Error: ${e.message}';
+      }
       showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              content: Text(e.message.toString()),
-            );
-          });
-      // You can display an error message to the user here
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            alignment: Alignment.center,
+            content: Text(errorMessage),
+          );
+        },
+      );
     }
   }
 
