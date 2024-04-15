@@ -3,6 +3,7 @@ import 'package:cerebro_mobile/organisms/request_topbar.dart';
 import 'package:cerebro_mobile/pages/dashboard.dart';
 import 'package:cerebro_mobile/pages/login/change_profile.dart';
 import 'package:cerebro_mobile/pages/login/mygrades1.dart';
+import 'package:cerebro_mobile/pages/profile/edit_profile.dart';
 import 'package:cerebro_mobile/pages/profile_screen.dart';
 import 'package:cerebro_mobile/pages/request_page/request_form.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
@@ -77,7 +78,8 @@ class CerebroNavigationDrawer extends StatelessWidget {
                 leading: Icon(Icons.person, color: Colors.white),
                 title: Text('Profile', style: TextStyle(color: Colors.white)),
                 onTap: () {
-                  Navigator.pushNamed(context, '/profile'); // Navigate to Profile
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => EditProfile())); // Navigate to Profile
                 },
               ),
               ListTile(
