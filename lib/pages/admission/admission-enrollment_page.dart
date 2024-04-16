@@ -11,6 +11,7 @@ class AdmissionEnrollmentPage extends StatefulWidget {
 
 class _AdmissionEnrollmentPageState extends State<AdmissionEnrollmentPage> {
   String dropdownValue = 'Please Select...';
+  String? _selectedValue;
 
   void _showSubmissionDialog() {
     showDialog(
@@ -73,246 +74,7 @@ class _AdmissionEnrollmentPageState extends State<AdmissionEnrollmentPage> {
                   )
                 ]),
                 SizedBox(height: 8),
-                Center(
-                  child: Table(
-                    // border: TableBorder.all(),
-                    children: [
-                      TableRow(
-                        children: [
-                          TableCell(
-                              child: Container(
-                            decoration: BoxDecoration(
-                              color: cerebroBlue200,
-                              borderRadius: BorderRadius.circular(4.0),
-                              border: Border(
-                                top:
-                                    BorderSide(width: 1.0, color: cerebroWhite),
-                                bottom:
-                                    BorderSide(width: 1.0, color: cerebroWhite),
-                                left:
-                                    BorderSide(width: 1.0, color: cerebroWhite),
-                                right:
-                                    BorderSide(width: 2.0, color: cerebroWhite),
-                              ),
-                            ),
-                            padding: EdgeInsets.all(8.0),
-                            child: Center(
-                              child: Text('Admission Period',
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 12.0,
-                                    color: cerebroWhite,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ),
-                          )),
-                          TableCell(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: cerebroBlue200,
-                                borderRadius: BorderRadius.circular(4.0),
-                                border: Border(
-                                  top: BorderSide(
-                                      width: 1.0, color: cerebroWhite),
-                                  bottom: BorderSide(
-                                      width: 1.0, color: cerebroWhite),
-                                  left: BorderSide(
-                                      width: 2.0, color: cerebroWhite),
-                                  right: BorderSide(
-                                      width: 1.0, color: cerebroWhite),
-                                ),
-                              ),
-                              padding: EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Text('Status',
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 12.0,
-                                      color: cerebroWhite,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      TableRow(
-                        children: [
-                          TableCell(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade300,
-                                borderRadius: BorderRadius.circular(4.0),
-                                border: Border(
-                                  top: BorderSide(
-                                      width: 0.5, color: cerebroWhite),
-                                  bottom: BorderSide(
-                                      width: 1.0, color: cerebroWhite),
-                                  left: BorderSide(
-                                      width: 1.0, color: cerebroWhite),
-                                  right: BorderSide(
-                                      width: 2.0, color: cerebroWhite),
-                                ),
-                              ),
-                              padding: EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Text('1st Sem A.Y. 22-23',
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 12.0,
-                                      color: Colors.black,
-                                    )),
-                              ),
-                            ),
-                          ),
-                          TableCell(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade300,
-                                borderRadius: BorderRadius.circular(4.0),
-                                border: Border(
-                                  top: BorderSide(
-                                      width: 0.5, color: cerebroWhite),
-                                  bottom: BorderSide(
-                                      width: 1.0, color: cerebroWhite),
-                                  left: BorderSide(
-                                      width: 2.0, color: cerebroWhite),
-                                  right: BorderSide(
-                                      width: 1.0, color: cerebroWhite),
-                                ),
-                              ),
-                              padding: EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Text('Admitted',
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 12.0,
-                                      color: Colors.black,
-                                    )),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      TableRow(
-                        children: [
-                          TableCell(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(204, 232, 251, 100),
-                                borderRadius: BorderRadius.circular(4.0),
-                                border: Border(
-                                  top: BorderSide(
-                                      width: 0.5, color: cerebroWhite),
-                                  bottom: BorderSide(
-                                      width: 1.0, color: cerebroWhite),
-                                  left: BorderSide(
-                                      width: 1.0, color: cerebroWhite),
-                                  right: BorderSide(
-                                      width: 2.0, color: cerebroWhite),
-                                ),
-                              ),
-                              padding: EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Text('2nd Sem A.Y. 22-23',
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 12.0,
-                                      color: Colors.black,
-                                    )),
-                              ),
-                            ),
-                          ),
-                          TableCell(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(204, 232, 251, 100),
-                                borderRadius: BorderRadius.circular(4.0),
-                                border: Border(
-                                  top: BorderSide(
-                                      width: 0.5, color: cerebroWhite),
-                                  bottom: BorderSide(
-                                      width: 1.0, color: cerebroWhite),
-                                  left: BorderSide(
-                                      width: 2.0, color: cerebroWhite),
-                                  right: BorderSide(
-                                      width: 1.0, color: cerebroWhite),
-                                ),
-                              ),
-                              padding: EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Text('Admitted',
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 12.0,
-                                      color: Colors.black,
-                                    )),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      TableRow(
-                        children: [
-                          TableCell(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade300,
-                                borderRadius: BorderRadius.circular(4.0),
-                                border: Border(
-                                  top: BorderSide(
-                                      width: 0.5, color: cerebroWhite),
-                                  bottom: BorderSide(
-                                      width: 1.0, color: cerebroWhite),
-                                  left: BorderSide(
-                                      width: 1.0, color: cerebroWhite),
-                                  right: BorderSide(
-                                      width: 2.0, color: cerebroWhite),
-                                ),
-                              ),
-                              padding: EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Text('1st Sem A.Y. 23-24',
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 12.0,
-                                      color: Colors.black,
-                                    )),
-                              ),
-                            ),
-                          ),
-                          TableCell(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade300,
-                                borderRadius: BorderRadius.circular(4.0),
-                                border: Border(
-                                  top: BorderSide(
-                                      width: 0.5, color: cerebroWhite),
-                                  bottom: BorderSide(
-                                      width: 1.0, color: cerebroWhite),
-                                  left: BorderSide(
-                                      width: 2.0, color: cerebroWhite),
-                                  right: BorderSide(
-                                      width: 1.0, color: cerebroWhite),
-                                ),
-                              ),
-                              padding: EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Text('Ongoing',
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 12.0,
-                                      color: Colors.black,
-                                    )),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                Center(),
               ],
             ),
           ),
@@ -387,8 +149,8 @@ class _AdmissionEnrollmentPageState extends State<AdmissionEnrollmentPage> {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                        text: 'Admission Period',
-                        style: TextStyle(color: Colors.black)),
+                            text: 'Admission Period',
+                            style: TextStyle(color: Colors.black)),
                         TextSpan(
                           text: '*',
                           style: TextStyle(color: Colors.red),
@@ -399,7 +161,7 @@ class _AdmissionEnrollmentPageState extends State<AdmissionEnrollmentPage> {
                 ]),
                 SizedBox(height: 8),
                 Container(
-                  width: null, 
+                  width: null,
                   height: 40,
                   child: DropdownButtonFormField<String>(
                     isExpanded: true,
@@ -428,19 +190,22 @@ class _AdmissionEnrollmentPageState extends State<AdmissionEnrollmentPage> {
                       ),
                     ],
                     onChanged: (String? newValue) {
-                      // Handle change
+                      setState(() {
+                        _selectedValue = newValue;
+                      });
                     },
+                    value: _selectedValue,
                   ),
                 ),
                 SizedBox(height: 16),
                 Align(
                     alignment: Alignment.center,
                     child: ElevatedButton(
-                      onPressed: () {
-                        _showSubmissionDialog();
-                      },
+                      onPressed:
+                          _selectedValue == null ? null : _showSubmissionDialog,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: cerebroBlue200,
+                        backgroundColor:
+                            cerebroBlue200, // Ensure this is defined
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -450,7 +215,8 @@ class _AdmissionEnrollmentPageState extends State<AdmissionEnrollmentPage> {
                       child: Text(
                         'Submit Application',
                         style: poppinsH6.copyWith(
-                          color: cerebroWhite,
+                          // Ensure this is defined
+                          color: cerebroWhite, // Ensure this is defined
                         ),
                       ),
                     ))
