@@ -17,8 +17,9 @@ class RequestPage extends StatelessWidget {
           body: Column(
             children: <Widget>[
               TabBar(
-                indicatorColor: cerebroBlue100,
-                labelColor: cerebroBlue100,
+                indicatorColor: cerebroBlue200,
+                labelStyle: TextStyle(fontWeight: FontWeight.bold, color: cerebroBlue200),  //For Selected tab
+              unselectedLabelStyle: TextStyle(color: cerebroBlue200), //For Un-selected Tab
                 tabs: [
                   Tab(text: 'Request Form'),
                   Tab(text: 'Requests and Records'),
