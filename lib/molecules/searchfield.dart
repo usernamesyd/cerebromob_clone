@@ -29,9 +29,11 @@ class CerebroSearchField extends StatelessWidget {
             border: Border.all(color: Colors.grey.shade300, width: 1),
           ),
           child: TextField(
-            
+            style: TextStyle(
+              fontSize: 10
+            ),
             decoration: InputDecoration(
-              border: InputBorder.none,
+            border: InputBorder.none,
               
             ),
           ),

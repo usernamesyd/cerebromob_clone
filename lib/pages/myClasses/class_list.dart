@@ -31,6 +31,17 @@ class ClassListPane extends StatefulWidget {
 }
 
 class _ClassListPane extends State<ClassListPane> {
+
+  String _selectedItem = "ABC School Year 2023-2024";
+  List<String> _allItems = [ "ABC School Year 2023-2024", "ABC School Year 2024-2025" /* ... many more items */];
+  List<String> _filteredItems = []; // Initialize to an empty list
+
+  @override
+  void initState() {
+    super.initState();
+    _filteredItems = _allItems; // Initially show all items
+  }
+
   @override
   Widget build(BuildContext context) {
     return Flexible(
@@ -42,25 +53,38 @@ class _ClassListPane extends State<ClassListPane> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              children: [ 
-                Text(
-                'My Classes',
-                style: poppinsH5.copyWith(
-                  color: cerebroBlue200,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-
-              Icon(
-                Icons.keyboard_arrow_down,
-                color: cerebroBlue100, // Make sure this color is defined in your theme
-              ),
-            
-            ],
+              children: [
+                DropdownButton<String>(
+                  value: _selectedItem,
+                   icon: const Icon(Icons.keyboard_arrow_down),
+                  items: _filteredItems.map<DropdownMenuItem<String>>((String value) =>
+                          DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: poppinsH5.copyWith(
+                                fontSize: value == _selectedItem ? 18.0 : 12.0,
+                                color: cerebroBlue200,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ))
+                      .toList(),
+                  onChanged: (String? value) {
+                    setState(() {
+                      _selectedItem = value!;
+                    });
+                  },
+                  underline: Container(),
+                )
+              ],
             ),
-            
+
+                        
             SizedBox(height: 20),
-            Expanded( 
+
+            _selectedItem == "ABC School Year 2023-2024"
+            ? Expanded( 
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
                 decoration: BoxDecoration(
@@ -116,7 +140,17 @@ class _ClassListPane extends State<ClassListPane> {
                   ],
                 ),
               ),
+            )
+
+            : Expanded(
+              child: Container(
+                child: Text(
+                  'No record yet.'
+                ),
+              ),
             ),
+
+
           ], 
         ),
       ),
