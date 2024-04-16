@@ -51,24 +51,24 @@ class EditProfileState extends State<EditProfile> {
 }
 
 
-class PersonalInfoPages extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-   return Container(
- height: MediaQuery.of(context).size.height,
- child: PageView(
+// class PersonalInfoPages extends StatelessWidget{
+//   @override
+//   Widget build(BuildContext context) {
+//    return Container(
+//  height: MediaQuery.of(context).size.height,
+//  child: PageView(
       
-        children: [
-            PersonalInfo(),
-            PersonalInfo2(),
-        ],
- ),
-    );
+//         children: [
+//             PersonalInfo(),
+//             PersonalInfo2(),
+//         ],
+//  ),
+//     );
    
    
-  }
+//   }
 
-}
+// }
 
 class PersonalInfo extends StatelessWidget{
 Widget _buildFormField(String labelText, {bool required = false}) {
@@ -256,8 +256,10 @@ class PersonalInfo2 extends StatelessWidget{
   Widget build(BuildContext context) {
     return SingleChildScrollView(
     child: Container (
+      margin: EdgeInsets.all(10.0),
            width: MediaQuery.of(context).size.width,
            child: Column(
+            
         children: [
                   Row( 
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -398,9 +400,10 @@ class EducationalBackground extends StatelessWidget{
         child: Column(crossAxisAlignment: CrossAxisAlignment.start,
         children: [
             _buildFormField("with Special Education Needs? ", required: true),
-                CerebroInputFormField(
-                controller: TextEditingController(), 
-                text: 'No'),
+            YesNoDropdown(),
+                // CerebroInputFormField(
+                // controller: TextEditingController(), 
+                // text: 'No'),
                 
     
             _buildFormField("Classification (if SPED)"),
@@ -496,3 +499,80 @@ class YesNoDropdownState extends State<YesNoDropdown> {
     
   }
   }
+
+
+class PersonalInfoPages extends StatefulWidget {
+  @override
+  PersonalInfoPagesState createState() => PersonalInfoPagesState();
+}
+
+class PersonalInfoPagesState extends State<PersonalInfoPages> {
+  late final PageController _pageController;
+  int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: _currentPage);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height, // Adjust height as needed
+      child: Stack(
+        children: [
+          PageView(
+            controller: _pageController,
+            onPageChanged: (int page) {
+              setState(() {
+                _currentPage = page;
+              });
+            },
+            children: [
+              PersonalInfo(),
+              PersonalInfo2(),
+            ],
+          ),
+          Positioned(
+            bottom: 20.0,
+            left: 0,
+            right: 0,
+            child: _buildProgressBar(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProgressBar() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        for (int i = 0; i < 2; i++)
+          _buildDot(
+            isCurrentPage: i == _currentPage,
+          ),
+      ],
+    );
+  }
+
+  Widget _buildDot({required bool isCurrentPage}) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 500),
+      margin: EdgeInsets.symmetric(horizontal: 4.0),
+      width: isCurrentPage ? 16.0 : 10.0,
+      height: isCurrentPage ? 16.0 : 10.0,
+      decoration: BoxDecoration(
+        color: isCurrentPage ? cerebroBlue200 : Colors.grey,
+        shape: BoxShape.circle,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+}
