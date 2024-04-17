@@ -74,11 +74,192 @@ class _AdmissionEnrollmentPageState extends State<AdmissionEnrollmentPage> {
                   )
                 ]),
                 SizedBox(height: 8),
-                Center(),
+                Center(
+                  child: Table(
+                    children: [
+                      TableRow(
+                        children: [
+                          TableCell(
+                              child: Container(
+                            decoration: BoxDecoration(
+                              color: cerebroBlue200,
+                              borderRadius: BorderRadius.circular(4.0),
+                              border: Border(
+                                top:
+                                    BorderSide(width: 1.0, color: cerebroWhite),
+                                bottom:
+                                    BorderSide(width: 1.0, color: cerebroWhite),
+                                left:
+                                    BorderSide(width: 1.0, color: cerebroWhite),
+                                right:
+                                    BorderSide(width: 2.0, color: cerebroWhite),
+                              ),
+                            ),
+                            padding: EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Text('Admission Period',
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 12.0,
+                                    color: cerebroWhite,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            ),
+                          )),
+                          TableCell(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: cerebroBlue200,
+                                borderRadius: BorderRadius.circular(4.0),
+                                border: Border(
+                                  top: BorderSide(
+                                      width: 1.0, color: cerebroWhite),
+                                  bottom: BorderSide(
+                                      width: 1.0, color: cerebroWhite),
+                                  left: BorderSide(
+                                      width: 2.0, color: cerebroWhite),
+                                  right: BorderSide(
+                                      width: 1.0, color: cerebroWhite),
+                                ),
+                              ),
+                              padding: EdgeInsets.all(8.0),
+                              child: Center(
+                                child: Text('Status',
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 12.0,
+                                      color: cerebroWhite,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      TableRow(
+                        children: [
+                          TableCell(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade300,
+                                borderRadius: BorderRadius.circular(4.0),
+                                border: Border(
+                                  top: BorderSide(
+                                      width: 0.5, color: cerebroWhite),
+                                  bottom: BorderSide(
+                                      width: 1.0, color: cerebroWhite),
+                                  left: BorderSide(
+                                      width: 1.0, color: cerebroWhite),
+                                  right: BorderSide(
+                                      width: 2.0, color: cerebroWhite),
+                                ),
+                              ),
+                              padding: EdgeInsets.all(8.0),
+                              child: Center(
+                                child: Text('A.Y. 21-22 1st Sem',
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 12.0,
+                                      color: Colors.black,
+                                    )),
+                              ),
+                            ),
+                          ),
+                          TableCell(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade300,
+                                borderRadius: BorderRadius.circular(4.0),
+                                border: Border(
+                                  top: BorderSide(
+                                      width: 0.5, color: cerebroWhite),
+                                  bottom: BorderSide(
+                                      width: 1.0, color: cerebroWhite),
+                                  left: BorderSide(
+                                      width: 2.0, color: cerebroWhite),
+                                  right: BorderSide(
+                                      width: 1.0, color: cerebroWhite),
+                                ),
+                              ),
+                              padding: EdgeInsets.all(8.0),
+                              child: Center(
+                                child: Text('Admitted',
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 12.0,
+                                      color: Colors.black,
+                                    )),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      TableRow(
+                        children: [
+                          TableCell(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Color.fromRGBO(204, 232, 251, 100),
+                                borderRadius: BorderRadius.circular(4.0),
+                                border: Border(
+                                  top: BorderSide(
+                                      width: 0.5, color: cerebroWhite),
+                                  bottom: BorderSide(
+                                      width: 1.0, color: cerebroWhite),
+                                  left: BorderSide(
+                                      width: 1.0, color: cerebroWhite),
+                                  right: BorderSide(
+                                      width: 2.0, color: cerebroWhite),
+                                ),
+                              ),
+                              padding: EdgeInsets.all(8.0),
+                              child: Center(
+                                child: Text('A.Y. 21-22 2nd Sem',
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 12.0,
+                                      color: Colors.black,
+                                    )),
+                              ),
+                            ),
+                          ),
+                          TableCell(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Color.fromRGBO(204, 232, 251, 100),
+                                borderRadius: BorderRadius.circular(4.0),
+                                border: Border(
+                                  top: BorderSide(
+                                      width: 0.5, color: cerebroWhite),
+                                  bottom: BorderSide(
+                                      width: 1.0, color: cerebroWhite),
+                                  left: BorderSide(
+                                      width: 2.0, color: cerebroWhite),
+                                  right: BorderSide(
+                                      width: 1.0, color: cerebroWhite),
+                                ),
+                              ),
+                              padding: EdgeInsets.all(8.0),
+                              child: Center(
+                                child: Text('Admitted',
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 12.0,
+                                      color: Colors.black,
+                                    )),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
-          // Container(
+          // Code for when there are no admission available
+          // Container(  
           //   width: boxWidth,
           //   padding: EdgeInsets.only(
           //       top: 20.0, bottom: 20.0, left: 15.0, right: 15.0),
