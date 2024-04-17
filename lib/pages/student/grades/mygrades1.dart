@@ -1,5 +1,5 @@
 import 'package:cerebro_mobile/atoms/navigation_drawer.dart';
-import 'package:cerebro_mobile/pages/login/mygrades2.dart';
+import 'package:cerebro_mobile/pages/student/grades/mygrades2.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/theme/texts.dart';
 import 'package:flutter/material.dart';

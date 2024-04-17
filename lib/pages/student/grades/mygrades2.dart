@@ -1,4 +1,4 @@
-import 'package:cerebro_mobile/pages/login/mygrades1.dart';
+import 'package:cerebro_mobile/pages/student/grades/mygrades1.dart';
 import 'package:flutter/material.dart';
 import 'package:cerebro_mobile/organisms/cerebro_appbar.dart';
 import 'package:cerebro_mobile/atoms/navigation_drawer.dart';

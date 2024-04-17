@@ -1,6 +1,6 @@
 import 'package:cerebro_mobile/organisms/cerebro_appbar.dart';
-import 'package:cerebro_mobile/pages/admission/admission-enrollment_page.dart';
-import 'package:cerebro_mobile/pages/admission/school_requirements_page.dart';
+import 'package:cerebro_mobile/pages/student/admission/admission-enrollment_page.dart';
+import 'package:cerebro_mobile/pages/student/admission/school_requirements_page.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
 import '../atoms/navigation_drawer.dart';

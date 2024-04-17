@@ -1,7 +1,7 @@
 import 'package:cerebro_mobile/atoms/navigation_drawer.dart';
 import 'package:cerebro_mobile/organisms/cerebro_appbar.dart';
-import 'package:cerebro_mobile/pages/login/change_profile.dart';
-import 'package:cerebro_mobile/pages/login/changepassword_screen.dart';
+import 'package:cerebro_mobile/pages/student/profile_settings/change_profile.dart';
+import 'package:cerebro_mobile/pages/student/profile_settings/changepassword_screen.dart';
 import 'package:cerebro_mobile/pages/login/login_page.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';

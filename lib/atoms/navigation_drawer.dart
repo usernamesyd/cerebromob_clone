@@ -1,11 +1,9 @@
 import 'package:cerebro_mobile/organisms/admission_topbar.dart';
 import 'package:cerebro_mobile/organisms/request_topbar.dart';
-import 'package:cerebro_mobile/pages/dashboard.dart';
-import 'package:cerebro_mobile/pages/login/change_profile.dart';
-import 'package:cerebro_mobile/pages/login/mygrades1.dart';
-import 'package:cerebro_mobile/pages/profile/edit_profile.dart';
-import 'package:cerebro_mobile/pages/profile_screen.dart';
-import 'package:cerebro_mobile/pages/request_page/request_form.dart';
+import 'package:cerebro_mobile/pages/student/classes/myClass1.dart';
+import 'package:cerebro_mobile/pages/student/dashboard/dashboard.dart';
+import 'package:cerebro_mobile/pages/student/grades/mygrades1.dart';
+import 'package:cerebro_mobile/pages/student/profile/edit_profile.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -94,7 +92,8 @@ class CerebroNavigationDrawer extends StatelessWidget {
                 leading: Icon(Icons.list, color: Colors.white),
                 title: Text('Classes', style: TextStyle(color: Colors.white)),
                 onTap: () {
-                  Navigator.pushNamed(context, '/classes'); // Navigate to Classes
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MyClassPage())); // Navigate to Classes
                 },
               ),
               ListTile(

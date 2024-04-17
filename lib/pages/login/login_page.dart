@@ -1,9 +1,9 @@
 import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
 import 'package:cerebro_mobile/atoms/cerebro_textform_field.dart';
 import 'package:cerebro_mobile/atoms/cerebro_passwordform_field.dart';
-import 'package:cerebro_mobile/pages/dashboard.dart';
+import 'package:cerebro_mobile/pages/student/dashboard/dashboard.dart';
 import 'package:cerebro_mobile/pages/login/forgotpassword_page.dart';
-import 'package:cerebro_mobile/pages/profile_screen.dart';
+import 'package:cerebro_mobile/pages/student/profile_settings/profile_screen.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/theme/texts.dart';
 import 'package:flutter/cupertino.dart';

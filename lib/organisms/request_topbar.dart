@@ -1,6 +1,6 @@
 import 'package:cerebro_mobile/organisms/cerebro_appbar.dart';
-import 'package:cerebro_mobile/pages/request_page/request_form.dart';
-import 'package:cerebro_mobile/pages/request_page/request_record.dart';
+import 'package:cerebro_mobile/pages/student/requests/request_form.dart';
+import 'package:cerebro_mobile/pages/student/requests/request_record.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
 import '../atoms/navigation_drawer.dart';

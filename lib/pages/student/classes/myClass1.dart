@@ -1,7 +1,7 @@
 import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
 import 'package:cerebro_mobile/atoms/navigation_drawer.dart';
-import 'package:cerebro_mobile/pages/login/mygrades1.dart';
-import 'package:cerebro_mobile/pages/myClasses/class_list.dart';
+import 'package:cerebro_mobile/pages/student/grades/mygrades1.dart';
+import 'package:cerebro_mobile/pages/student/classes/class_list.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/theme/texts.dart';
 import 'package:flutter/material.dart';

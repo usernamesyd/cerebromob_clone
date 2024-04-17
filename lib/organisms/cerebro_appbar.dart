@@ -1,5 +1,5 @@
-import 'package:cerebro_mobile/pages/login/change_profile.dart';
-import 'package:cerebro_mobile/pages/profile_screen.dart';
+import 'package:cerebro_mobile/pages/student/profile_settings/change_profile.dart';
+import 'package:cerebro_mobile/pages/student/profile_settings/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class CerebroAppBar extends StatelessWidget implements PreferredSizeWidget {
