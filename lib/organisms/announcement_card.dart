@@ -24,10 +24,18 @@ class _AnnouncementCardState extends State<AnnouncementCard> {
   Widget build(BuildContext context) {
     return Card(
       color: cerebroWhite,
-      elevation: 3,
+      elevation: 2,
       margin: EdgeInsets.symmetric(vertical: 8),
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 8),
+        decoration: BoxDecoration(
+          color: cerebroWhite,
+          borderRadius: BorderRadius.circular(10),
+           border: Border.all(
+                color: Color.fromARGB(255, 179, 177, 177),
+                width: 1,
+              ), 
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -57,7 +65,7 @@ class _AnnouncementCardState extends State<AnnouncementCard> {
                       widget.adminName,
                       style: poppinsH6.copyWith(
                           color: Colors.black,
-                          fontSize: 12,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 2),
@@ -65,7 +73,7 @@ class _AnnouncementCardState extends State<AnnouncementCard> {
                       widget.announcementTitle,
                       style: poppinsH6.copyWith(
                           color: Colors.black,
-                          fontSize: 10,
+                          fontSize: 12,
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 4),
@@ -73,7 +81,7 @@ class _AnnouncementCardState extends State<AnnouncementCard> {
                       widget.announcementDateTime,
                       style: poppinsH6.copyWith(
                           color: Colors.black,
-                          fontSize: 8,
+                          fontSize: 10,
                           fontWeight: FontWeight.normal),
                     ),
                     SizedBox(height: 8),
@@ -84,7 +92,8 @@ class _AnnouncementCardState extends State<AnnouncementCard> {
                         textAlign: TextAlign.justify,
                         style: poppinsH6.copyWith(
                             color: Colors.black,
-                            fontSize: 8,
+                            fontSize: 10,
+                            height: 1.5,
                             fontWeight: FontWeight.normal),
                         softWrap: true,
                         maxLines: null,
