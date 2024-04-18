@@ -35,7 +35,7 @@ class AttachmentDataSource extends DataGridSource {
   DataGridRowAdapter buildRow(DataGridRow row) {
     final int rowIndex = effectiveRows.indexOf(row);
     final Color backgroundColor =
-        rowIndex % 2 == 0 ? Colors.blue.shade100 : Colors.white;
+        rowIndex % 2 == 0 ? Color.fromRGBO(204, 232, 251, 100) : Colors.white;
 
     List<Widget> getCellWidgetList(DataGridRow row) {
       var cells = row.getCells();
