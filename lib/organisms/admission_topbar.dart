@@ -19,7 +19,7 @@ class AdmissionPage extends StatelessWidget {
               TabBar(
                 indicatorColor: cerebroBlue200,
                 labelStyle: TextStyle(fontWeight: FontWeight.bold, color: cerebroBlue200),  //For Selected tab
-              unselectedLabelStyle: TextStyle(color: cerebroBlue200), //For Un-selected Tabs
+              unselectedLabelStyle: TextStyle(color: cerebroBlue200), //For Un-selected Tab
                 tabs: [
                   Tab(text: 'School Requirements'),
                   Tab(text: 'Admission/Enrollment'),
