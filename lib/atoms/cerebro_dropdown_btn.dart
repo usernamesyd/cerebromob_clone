@@ -135,9 +135,9 @@ class _GeneralDropdownState extends State<GeneralDropdown> {
               items: widget.items.map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
-                  child: Text(value, 
+                  child: Text(value,  
                   style: TextStyle(
-                    color: cerebroGreyborder,
+                    
                     fontFamily: 'Poppins',
                     fontSize: 14,
                     fontWeight: FontWeight.w400,

@@ -1,28 +1,28 @@
 import 'package:cerebro_mobile/atoms/cerebro_date_picker.dart';
 import 'package:cerebro_mobile/atoms/cerebro_textform_field.dart';
 import 'package:cerebro_mobile/atoms/cerebro_dropdown_btn.dart';
-import 'package:cerebro_mobile/atoms/navigation_drawer.dart';
-import 'package:cerebro_mobile/organisms/cerebro_appbar.dart';
 import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
+import 'package:cerebro_mobile/atoms/teacher_navdrawer.dart';
+import 'package:cerebro_mobile/organisms/teacher_appbar.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class EditProfile extends StatefulWidget {
+class TeacherEditProfile extends StatefulWidget {
   @override
-  EditProfileState createState() => EditProfileState();
+  TeacherEditProfileState createState() => TeacherEditProfileState();
 }
-class EditProfileState extends State<EditProfile> {
+class TeacherEditProfileState extends State<TeacherEditProfile> {
     String dropdownValue = 'Personal Information';
-    var items = ['Personal Information', 'Family Background', 'Educational Background'];
+    var items = ['Personal Information',  'Educational Background', 'License Information'];
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: CerebroNavigationDrawer(),
-      appBar: CerebroAppBar(title: 'ABC School of Cavite'),
+      drawer: TeacherNavigationDrawer(),
+      appBar: TeacherAppBar(title: 'ABC School of Cavite'),
       body:SingleChildScrollView(
         padding: EdgeInsets.all(20.0),
         child: DropdownButtonHideUnderline(
@@ -40,10 +40,10 @@ class EditProfileState extends State<EditProfile> {
     
             if (dropdownValue == 'Personal Information')
                PersonalInfoPages(),         
-            if (dropdownValue == 'Family Background')
-              Familybackground(),
             if (dropdownValue == 'Educational Background')
               EducationalBackground(),
+            if (dropdownValue == 'License Information')
+              LicenseInformation()
             ],
         ),
       ),
@@ -52,7 +52,6 @@ class EditProfileState extends State<EditProfile> {
   }
 }
 
-// Combine PersonalInfo and PersonalInfo2 for Personal Information
 class PersonalInfoPages extends StatefulWidget {
   @override
   PersonalInfoPagesState createState() => PersonalInfoPagesState();
@@ -132,8 +131,8 @@ class PersonalInfoPagesState extends State<PersonalInfoPages> {
 
 class PersonalInfo extends StatelessWidget{
 Widget _buildFormField(String labelText, {bool required = false}) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 10.0, 10.0),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 20.0, 10.0),
       child: Row(
      children: [
         Text(
@@ -208,10 +207,10 @@ Widget _buildFormField(String labelText, {bool required = false}) {
 
 }
 class PersonalInfo2 extends StatelessWidget{
-   late TextEditingController _registrationDateController = TextEditingController();
+  late TextEditingController _registrationDateController = TextEditingController();
 
      Widget _buildFormField(String labelText, {bool required = false}) {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.fromLTRB(0.0, 10.0, 10.0, 10.0),
       child: Row(
      children: [
@@ -237,10 +236,9 @@ class PersonalInfo2 extends StatelessWidget{
      
      Widget _buildColumn1() {
     return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildFormField("Gender ", required: true),
-          GeneralDropdown(
+           GeneralDropdown(
             items: ['Female', 'Male','Prefer not to say'],
             initialValue: 'Female',
             onChanged: (value) {
@@ -252,7 +250,7 @@ class PersonalInfo2 extends StatelessWidget{
             controller: TextEditingController(),
             text: 'Age',
           ),
-          _buildFormField("Religion ", required: true),
+          _buildFormField("Religion "),
           CerebroInputFormField(
             controller: TextEditingController(),
             text: 'Religion',
@@ -263,21 +261,20 @@ class PersonalInfo2 extends StatelessWidget{
 
   Widget _buildColumn2() {
       return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildFormField("Date of Birth ", required: true),
           CerebroDateInputFormField(
+            hintText: 'Date of Birth', 
           controller: _registrationDateController,
-          hintText: 'Date of Birth',
-          allowPastDates: true, // Allow past dates
-          allowFutureDates: false, // Disallow future dates
-        ),
+          allowFutureDates: false,
+          allowPastDates: true,
+          ),
           _buildFormField("Place of Birth ", required: true),
           CerebroInputFormField(
             controller: TextEditingController(),
             text: 'Place of Birth',
           ),
-          _buildFormField("Nationality ", required: true),
+          _buildFormField("Nationality "),
           CerebroInputFormField(
             controller: TextEditingController(),
             text: 'Nationality',
@@ -297,21 +294,6 @@ class PersonalInfo2 extends StatelessWidget{
             controller: TextEditingController(),
             text: 'Country of Citizenship',
           ),
-          _buildFormField("Mother Tongue"),
-          CerebroInputFormField(
-            controller: TextEditingController(),
-            text: 'Mother Tongue',
-          ),
-          _buildFormField("Indigenous People"),
-          CerebroInputFormField(
-            controller: TextEditingController(),
-            text: 'Indigenous People',
-          ),
-           _buildFormField("Dropdown"),
-          CerebroInputFormField(
-            controller: TextEditingController(),
-            text: 'Philippines',
-          ),
         ],
      );
   }
@@ -330,17 +312,18 @@ class PersonalInfo2 extends StatelessWidget{
         children: [
                   Row( 
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                        Expanded(
+                        Expanded(     
                             child: _buildColumn1(),
                             ),
-                            SizedBox(width: 20.0), 
-                           Expanded(
+                            SizedBox(width: 20.0,), 
+                        Expanded(
                             child: _buildColumn2(),
                             ),
                       ],
                   ),
-                 SizedBox(height: 10.0), // Add some vertical spacing
+                 SizedBox(height: 2.0), // Add some vertical spacing
                     _buildaftercolumn(),
                   
                 ],
@@ -352,92 +335,10 @@ class PersonalInfo2 extends StatelessWidget{
   }
     }
 
-
-class Familybackground extends StatelessWidget{
- Widget _buildFormField(String labelText, {bool required = false}) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 10.0, 10.0),
-      child: Row(
-     children: [
-        Text(
-          labelText,
-          style: TextStyle(
-            fontSize: 17,
-            fontWeight: FontWeight.normal,
-            color: Colors.black,
-          ),
-        ),
-        if (required)
-          Text(
-            '*',
-            style: TextStyle(
-              color: Colors.red,
-            ),
-          ),
-      ],
-      )
-    );
-  }
- 
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-    child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        
-         _buildFormField("Father's Name ", required: true),
-            CerebroInputFormField(
-              controller: TextEditingController(), 
-              text: 'First Name'),
-            CerebroInputFormField(
-              controller: TextEditingController(), 
-              text: 'Middle Name'),
-            CerebroInputFormField(
-              controller: TextEditingController(),
-              text: 'Last Name'),
-            CerebroInputFormField(
-              controller: TextEditingController(),
-              text: 'Extension Name (Optional)'),
-        
-        _buildFormField("Mother's Name ", required: true),
-            CerebroInputFormField(
-              controller: TextEditingController(), 
-              text: 'First Name'),
-            CerebroInputFormField(
-              controller: TextEditingController(), 
-              text: 'Middle Name'),
-            CerebroInputFormField(
-              controller: TextEditingController(),
-              text: 'Last Name'),
-            CerebroInputFormField(
-              controller: TextEditingController(),
-              text: 'Extension Name (Optional)'),
-        
-        _buildFormField("Guardian's Name ", required: true),
-            CerebroInputFormField(
-              controller: TextEditingController(), 
-              text: 'First Name'),
-            CerebroInputFormField(
-              controller: TextEditingController(), 
-              text: 'Middle Name'),
-            CerebroInputFormField(
-              controller: TextEditingController(),
-              text: 'Last Name'),
-            CerebroInputFormField(
-              controller: TextEditingController(),
-              text: 'Extension Name (Optional)'),
-    
-      ],
-    ),
-    );
-  }
-
-}
-
 class EducationalBackground extends StatelessWidget{
     Widget _buildFormField(String labelText, {bool required = false}) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 20.0, 10.0),
       child: Row(
      children: [
         Text(
@@ -466,51 +367,148 @@ class EducationalBackground extends StatelessWidget{
     return Form(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-            _buildFormField("with Special Education Needs? ", required: true),
-            GeneralDropdown(
+            _buildFormField("Degree", required: true),
+             GeneralDropdown(
             items: ['Yes', 'No'],
             initialValue: 'No',
             onChanged: (value) {
               print('Selected value: $value');
             },
-          ), 
+          ),
                 
     
-            _buildFormField("Classification (if SPED)"),
+            _buildFormField("Major"),
                 CerebroInputFormField(
                 controller: TextEditingController(), 
-                text: 'First Name'),
+                text: 'Major'),
             
-            _buildFormField("Learner Reference Number (LRN)"),
+            _buildFormField("Minor"),
                 CerebroInputFormField(
                 controller: TextEditingController(), 
-                text: "Learner Reference Number (LRN)"),
-
-            _buildFormField("Student Type ", required: true),
-            GeneralDropdown(
-            items: ['Old', 'New'],
-            initialValue: 'Old',
-            onChanged: (value) {
-              print('Selected value: $value');
-            },
-          ), 
+                text: "Minor"),
             
-            _buildFormField("Year/Grade Level ", required: true),
-                CerebroInputFormField(
-                controller: TextEditingController(), 
-                text: 'Year/Grade Level'),
-            
-            _buildFormField("Last School Attended"),
+            _buildFormField("School Attended"),
                 CerebroInputFormField(
                 controller: TextEditingController(), 
                 text: "St. Paul College"),  
 
-            _buildFormField("Address of Last School Attended "),
+            _buildFormField("Year Attended"),
                 CerebroInputFormField(
                 controller: TextEditingController(), 
-                text: "Address of Last School Attended"), 
-                Padding(
-                padding: const EdgeInsets.only(top: 15.0),
+                text: "2020"),  
+           ],
+        ),
+        );
+  }
+  }
+
+
+
+class LicenseInformation extends StatefulWidget {
+  @override
+  _LicenseInformationState createState() => _LicenseInformationState();
+}
+
+class _LicenseInformationState extends State<LicenseInformation> {
+  Widget _buildFormField(String labelText, {bool required = false}) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 20.0, 10.0),
+      child: Row(
+     children: [
+        Text(
+          labelText,
+          style: TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.normal,
+            color: Colors.black,
+          ),
+        ),
+        if (required)
+          Text(
+            '*',
+            style: TextStyle(
+              color: Colors.red,
+            ),
+          ),
+      ],
+      )
+    );
+  }
+   late TextEditingController _registrationDateController;
+   late TextEditingController _expirationDateController;
+  
+  @override
+  void initState() {
+    super.initState();
+   _expirationDateController = TextEditingController();
+   _registrationDateController = TextEditingController();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        
+         _buildFormField("License Number", required: true),
+            CerebroInputFormField(
+              controller: TextEditingController(), 
+              text: 'License Number'),
+        _buildFormField("Date of Registration", required: true),
+          CerebroDateInputFormField(
+            controller: _registrationDateController,
+            hintText: 'Date of Registration',
+            allowPastDates: true, // Allow past dates
+            allowFutureDates: false, // Disallow future dates
+          ),
+        _buildFormField("Date of Expiration", required: true),
+          CerebroDateInputFormField(
+              controller: _expirationDateController,
+              hintText: 'Date of Expiration',
+              allowPastDates: false, // Disallow past dates
+              allowFutureDates: true, // Allow future dates
+            ),
+         _buildFormField("Upload License", required: true),    
+            Container(
+              padding: const EdgeInsets.all(8),
+              width: MediaQuery.of(context).size.width, 
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: cerebroBlue300, 
+                  width: 1.5, 
+                ),
+                borderRadius: BorderRadius.circular(5), 
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(padding: EdgeInsets.only(left: 30.0)),
+                      CerebroOutlinedBtn(
+                        onPressed: () {},
+                        text: 'File Upload',
+                      ),
+                      SizedBox(width: 20),
+                      Text(
+                        'No file selected',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: cerebroGreyborder,
+                          ),
+                      ),
+                      
+                      
+                    ],
+                  ),
+                ],
+                
+              ),
+              
+            ),
+         Padding(
+                padding: const EdgeInsets.only(top: 20.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -520,11 +518,9 @@ class EducationalBackground extends StatelessWidget{
                     ),
                     ],
                   ),
-                ), 
-           ],
-           
-        ),
-        
-        );
+                ),          
+      ],
+    );
   }
-  }
+
+}
