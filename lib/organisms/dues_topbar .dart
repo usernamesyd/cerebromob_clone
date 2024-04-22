@@ -1,6 +1,6 @@
 import 'package:cerebro_mobile/organisms/cerebro_appbar.dart';
-import 'package:cerebro_mobile/pages/dues/invoices.dart';
-import 'package:cerebro_mobile/pages/dues/mydues_dashboard.dart';
+import 'package:cerebro_mobile/pages/student/dues/invoices.dart';
+import 'package:cerebro_mobile/pages/student/dues/mydues_dashboard.dart';
 
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';

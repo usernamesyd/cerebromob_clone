@@ -1,3 +1,4 @@
+import 'package:cerebro_mobile/pages/teacher/dashboard/dashboard.dart';
 import 'package:cerebro_mobile/pages/teacher/profile/teacher_edit_profile.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
@@ -63,8 +64,8 @@ class TeacherNavigationDrawer extends StatelessWidget {
                 leading: Icon(Icons.dashboard, color: Colors.white),
                 title: Text('Dashboard', style: TextStyle(color: Colors.white)),
                 onTap: () {
-                  //Navigator.push(context,
-                      //MaterialPageRoute(builder: (context) => DashboardPage())); // Navigate to Teachers Dashboard
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TeachersDashboardPage())); // Navigate to Dashboard
                 },
               ),
               ListTile(
@@ -72,7 +73,7 @@ class TeacherNavigationDrawer extends StatelessWidget {
                 title: Text('Profile', style: TextStyle(color: Colors.white)),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => TeacherEditProfile())); // Navigate to Teacher Profile
+                      MaterialPageRoute(builder: (context) => TeacherEditProfile())); // Navigate to Dashboard
                 },
               ),
               ListTile(

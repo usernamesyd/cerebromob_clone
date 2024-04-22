@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:cerebro_mobile/pages/dues/assessment_fees.dart';
+import 'package:cerebro_mobile/pages/student/dues/assessment_fees.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';

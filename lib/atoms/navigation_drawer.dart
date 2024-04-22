@@ -1,4 +1,5 @@
 import 'package:cerebro_mobile/organisms/admission_topbar.dart';
+import 'package:cerebro_mobile/organisms/dues_topbar%20.dart';
 import 'package:cerebro_mobile/organisms/request_topbar.dart';
 import 'package:cerebro_mobile/pages/student/classes/myClass1.dart';
 import 'package:cerebro_mobile/pages/student/dashboard/dashboard.dart';
@@ -100,7 +101,8 @@ class CerebroNavigationDrawer extends StatelessWidget {
                 leading: Icon(Icons.money, color: Colors.white),
                 title: Text('Dues', style: TextStyle(color: Colors.white)),
                 onTap: () {
-                  Navigator.pushNamed(context, '/dues'); // Navigate to Dues
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DuesPage())); // Navigate to Dues
                 },
               ),
               ListTile(
