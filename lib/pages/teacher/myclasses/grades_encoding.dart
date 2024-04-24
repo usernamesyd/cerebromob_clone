@@ -69,8 +69,8 @@ class AttachmentDataSource extends DataGridSource {
 // Define a global variable for data source
 final AttachmentDataSource dataSource = AttachmentDataSource();
 
-class GradesEncoding extends StatelessWidget {
-  const GradesEncoding({Key? key});
+class TeachersGradesEncoding extends StatelessWidget {
+  const TeachersGradesEncoding({Key? key});
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
