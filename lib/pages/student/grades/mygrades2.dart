@@ -45,6 +45,37 @@ class _MyGradesContainer extends State<MyGradesContainer> {
               fontWeight: FontWeight.bold
             ),
           ),
+          SizedBox(height: 18),
+          Row(
+            children: [
+            Text(
+            'Course Titles', //whatever subject that was clicked on the page 1 must be displayed in this text display holder
+            style: poppinsParagraph.copyWith(
+              color: Colors.black,
+              fontSize: 12
+            ),
+          ),
+          SizedBox(width: 10),  
+          Icon(Icons.arrow_forward_ios, size: 12, color: Colors.grey), // Breadcrumb icon
+          SizedBox(width: 10),  
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => myGradesPage1()),
+              );
+            },
+            child: Text(
+              'English 1',
+              style: poppinsParagraph.copyWith(
+                color: Colors.black,
+                fontSize: 12,
+              ),
+            ),
+          ),
+               
+            ] 
+          ),
           SizedBox(height: 20),
           Center(
             child: Table(
