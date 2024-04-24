@@ -1,4 +1,5 @@
 
+import 'package:cerebro_mobile/pages/teacher/profile_settings/teacherprofile_screen.dart';
 import 'package:flutter/material.dart';
 
 class TeacherAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -40,6 +41,8 @@ class TeacherAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         TextButton(
           onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => TeacherProfileScreen()));
           }, // Handle profile actions here
           child: Padding(
             padding: const EdgeInsets.all(8.0),
