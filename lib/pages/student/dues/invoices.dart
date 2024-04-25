@@ -5,7 +5,6 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:cerebro_mobile/molecules/searchdues.dart';
 
-
 class InvoicesTable {
   String invoiceno;
   String particulars;
@@ -43,7 +42,7 @@ class InvoicesState extends State<Invoices> {
       dateIssued: DateTime(2024, 2, 29),
       amount: 'P 100.00',
     ),
-     InvoicesTable(
+    InvoicesTable(
       invoiceno: 'ABC-2024-000008',
       particulars: 'Form 137',
       dateIssued: DateTime(2024, 2, 14),
@@ -55,7 +54,7 @@ class InvoicesState extends State<Invoices> {
       dateIssued: DateTime(2024, 2, 1),
       amount: 'P 100.00',
     ),
-     InvoicesTable(
+    InvoicesTable(
       invoiceno: 'ABC-2024-000006',
       particulars: 'Course Description',
       dateIssued: DateTime(2024, 1, 25),
@@ -67,7 +66,7 @@ class InvoicesState extends State<Invoices> {
       dateIssued: DateTime(2024, 1, 10),
       amount: 'P 100.00',
     ),
-     InvoicesTable(
+    InvoicesTable(
       invoiceno: 'ABC-2024-000004',
       particulars: 'Course Description',
       dateIssued: DateTime(2024, 3, 6),
@@ -79,7 +78,7 @@ class InvoicesState extends State<Invoices> {
       dateIssued: DateTime(2024, 3, 6),
       amount: 'P 100.00',
     ),
-     InvoicesTable(
+    InvoicesTable(
       invoiceno: 'ABC-2024-000002',
       particulars: 'Course Description',
       dateIssued: DateTime(2024, 3, 6),
@@ -116,16 +115,17 @@ class InvoicesState extends State<Invoices> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 10),
-                Text(
-                  'My Invoices', // Title updated
-                  style: TextStyle(
-                    color: Color.fromRGBO(0, 84, 166, 1),
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
+                SizedBox(height: 20,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    SearchDues(), // Placing the search bar in the upper right side
+                    SizedBox(
+                      width: 10,
+                    ), // Adding some space between the search bar and other widgets
+                  ],
                 ),
-                SizedBox(height: 5,),
+                SizedBox(height: 4), // Adding some vertical spacing
                 Row(
                   children: [
                     Text('Show '),
@@ -147,15 +147,11 @@ class InvoicesState extends State<Invoices> {
                     ),
                     SizedBox(width: 8),
                     Text('entries'),
-
-                    SizedBox(
-                        width: 20,
-                      ),
-                      SearchDues(),
                   ],
                 ),
+                SizedBox(height: 12),
                 SizedBox(
-                  height: constraint.maxHeight - 250,
+                  height: constraint.maxHeight - 180,
                   width: constraint.maxWidth,
                   child: _buildDataGrid(constraint),
                 ),
@@ -171,17 +167,17 @@ class InvoicesState extends State<Invoices> {
                           itemBorderRadius: BorderRadius.circular(5),
                         ),
                       ),
-                    child: SfDataPager(
-                      visibleItemsCount: 5,
-                      delegate: _assessmentDataSource,
-                      controller: _controller,
-                      pageCount:
-                          (_data.length / _rowsPerPage).ceil().toDouble(),
-                      onPageNavigationStart: (int pageIndex) =>
-                          _assessmentDataSource.goToPage(pageIndex),
+                      child: SfDataPager(
+                        visibleItemsCount: 5,
+                        delegate: _assessmentDataSource,
+                        controller: _controller,
+                        pageCount:
+                            (_data.length / _rowsPerPage).ceil().toDouble(),
+                        onPageNavigationStart: (int pageIndex) =>
+                            _assessmentDataSource.goToPage(pageIndex),
+                      ),
                     ),
                   ),
-                ),
                 ),
               ],
             ),
@@ -189,6 +185,7 @@ class InvoicesState extends State<Invoices> {
         },
       ),
     );
+
   }
 
   Widget _buildDataGrid(BoxConstraints constraint) {
@@ -211,7 +208,10 @@ class InvoicesState extends State<Invoices> {
               child: Text(
                 'Invoice Number', // Updated column name
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             width: 200,
@@ -224,7 +224,10 @@ class InvoicesState extends State<Invoices> {
               child: Text(
                 'Particulars', // Updated column name
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -236,7 +239,10 @@ class InvoicesState extends State<Invoices> {
               child: Text(
                 'Date Issued',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -248,7 +254,10 @@ class InvoicesState extends State<Invoices> {
               child: Text(
                 'Amount',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             width: 100,
@@ -291,7 +300,8 @@ class _AssessmentDataSource extends DataGridSource {
             ),
             DataGridCell<String>(
               columnName: 'dateIssued',
-              value: DateFormat('yyyy-MM-dd').format(data[dataIndex].dateIssued),
+              value:
+                  DateFormat('yyyy-MM-dd').format(data[dataIndex].dateIssued),
             ),
             DataGridCell<String>(
               columnName: 'amount',
@@ -317,12 +327,23 @@ class _AssessmentDataSource extends DataGridSource {
     return DataGridRowAdapter(
       color: getRowBackgroundColor(),
       cells: row.getCells().map<Widget>((e) {
-        return Center(
-          child: Text(
-            e.value.toString(),
-            textAlign: TextAlign.center,
-          ),
-        );
+        if (e.columnName == 'invoiceno') {
+          // Apply bold style to invoice numbers
+          return Center(
+            child: Text(
+              e.value.toString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          );
+        } else {
+          return Center(
+            child: Text(
+              e.value.toString(),
+              textAlign: TextAlign.center,
+            ),
+          );
+        }
       }).toList(),
     );
   }

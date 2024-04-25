@@ -114,7 +114,16 @@ class MyDues1State extends State<MyDues1> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 10,
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    SearchDues(), // Placing the search bar in the upper right side
+                    SizedBox(
+                      width: 10,
+                    ), // Adding some space between the search bar and other widgets
+                  ],
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
@@ -145,16 +154,12 @@ class MyDues1State extends State<MyDues1> {
                         'entries',
                         style: TextStyle(fontSize: 16),
                       ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      SearchDues(),
                     ],
                   ),
                 ),
                 SizedBox(height: 12),
                 SizedBox(
-                  height: constraint.maxHeight - 250,
+                  height: constraint.maxHeight - 180,
                   width: constraint.maxWidth,
                   child: _buildDataGrid(constraint),
                 ),
@@ -174,7 +179,8 @@ class MyDues1State extends State<MyDues1> {
                         visibleItemsCount: 5,
                         delegate: _assessmentDataSource,
                         controller: _controller,
-                        pageCount: (_data.length / _rowsPerPage).ceil().toDouble(),
+                        pageCount:
+                            (_data.length / _rowsPerPage).ceil().toDouble(),
                         onPageNavigationStart: (int pageIndex) =>
                             _assessmentDataSource.goToPage(pageIndex),
                       ),
@@ -317,13 +323,12 @@ class _AssessmentDataSource extends DataGridSource {
             ),
             DataGridCell<String>(
               columnName: 'Date-issued',
-              value: DateFormat('yyyy-MM-dd')
-                  .format(data[dataIndex].dateIssued),
+              value:
+                  DateFormat('yyyy-MM-dd').format(data[dataIndex].dateIssued),
             ),
             DataGridCell<String>(
               columnName: 'due-date',
-              value:
-                  DateFormat('yyyy-MM-dd').format(data[dataIndex].dueDate),
+              value: DateFormat('yyyy-MM-dd').format(data[dataIndex].dueDate),
             ),
             DataGridCell<String>(
               columnName: 'amount',
