@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
+import 'package:cerebro_mobile/molecules/searchdues.dart';
 
 
 class InvoicesTable {
@@ -21,17 +22,17 @@ class InvoicesTable {
 
 class Invoices extends StatefulWidget {
   @override
-  _InvoicesState createState() => _InvoicesState();
+  InvoicesState createState() => InvoicesState();
 }
 
-class _InvoicesState extends State<Invoices> {
+class InvoicesState extends State<Invoices> {
   late DataPagerController _controller;
   int _rowsPerPage = 5; // Default rows per page
 
   final List<InvoicesTable> _data = [
     // First set of records (same records)
     InvoicesTable(
-      invoiceno: 'ABC-2024-000008',
+      invoiceno: 'ABC-2024-000010',
       particulars: 'Course Description',
       dateIssued: DateTime(2024, 3, 6),
       amount: 'P 62.50',
@@ -39,12 +40,61 @@ class _InvoicesState extends State<Invoices> {
     InvoicesTable(
       invoiceno: 'ABC-2024-000009',
       particulars: 'TOR',
+      dateIssued: DateTime(2024, 2, 29),
+      amount: 'P 100.00',
+    ),
+     InvoicesTable(
+      invoiceno: 'ABC-2024-000008',
+      particulars: 'Form 137',
+      dateIssued: DateTime(2024, 2, 14),
+      amount: 'P 150.00',
+    ),
+    InvoicesTable(
+      invoiceno: 'ABC-2024-000007',
+      particulars: 'TOR',
+      dateIssued: DateTime(2024, 2, 1),
+      amount: 'P 100.00',
+    ),
+     InvoicesTable(
+      invoiceno: 'ABC-2024-000006',
+      particulars: 'Course Description',
+      dateIssued: DateTime(2024, 1, 25),
+      amount: 'P 62.50',
+    ),
+    InvoicesTable(
+      invoiceno: 'ABC-2024-000005',
+      particulars: 'TOR',
+      dateIssued: DateTime(2024, 1, 10),
+      amount: 'P 100.00',
+    ),
+     InvoicesTable(
+      invoiceno: 'ABC-2024-000004',
+      particulars: 'Course Description',
+      dateIssued: DateTime(2024, 3, 6),
+      amount: 'P 62.50',
+    ),
+    InvoicesTable(
+      invoiceno: 'ABC-2024-000003',
+      particulars: 'TOR',
+      dateIssued: DateTime(2024, 3, 6),
+      amount: 'P 100.00',
+    ),
+     InvoicesTable(
+      invoiceno: 'ABC-2024-000002',
+      particulars: 'Course Description',
+      dateIssued: DateTime(2024, 3, 6),
+      amount: 'P 62.50',
+    ),
+    InvoicesTable(
+      invoiceno: 'ABC-2024-000001',
+      particulars: 'TOR',
       dateIssued: DateTime(2024, 3, 6),
       amount: 'P 100.00',
     ),
   ];
 
-  late _AssessmentDataSource _assessmentDataSource;
+  late var _assessmentDataSource =
+      _AssessmentDataSource(data: [], rowsPerPage: 5);
 
   @override
   void initState() {
@@ -97,6 +147,11 @@ class _InvoicesState extends State<Invoices> {
                     ),
                     SizedBox(width: 8),
                     Text('entries'),
+
+                    SizedBox(
+                        width: 20,
+                      ),
+                      SearchDues(),
                   ],
                 ),
                 SizedBox(
@@ -109,6 +164,13 @@ class _InvoicesState extends State<Invoices> {
                   height: 60,
                   child: Align(
                     alignment: Alignment.center,
+                    child: SfTheme(
+                      data: SfThemeData(
+                        dataPagerThemeData: SfDataPagerThemeData(
+                          selectedItemColor: Colors.blue,
+                          itemBorderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
                     child: SfDataPager(
                       visibleItemsCount: 5,
                       delegate: _assessmentDataSource,
@@ -119,6 +181,7 @@ class _InvoicesState extends State<Invoices> {
                           _assessmentDataSource.goToPage(pageIndex),
                     ),
                   ),
+                ),
                 ),
               ],
             ),
@@ -132,7 +195,10 @@ class _InvoicesState extends State<Invoices> {
     return SfDataGridTheme(
       data: SfDataGridThemeData(headerColor: Colors.blue),
       child: SfDataGrid(
-        source: _assessmentDataSource,
+        source: _AssessmentDataSource(
+          data: _data,
+          rowsPerPage: _rowsPerPage,
+        ),
         frozenColumnsCount: 1,
         columnWidthMode: ColumnWidthMode.auto,
         allowPullToRefresh: true,
@@ -242,7 +308,7 @@ class _AssessmentDataSource extends DataGridSource {
     Color getRowBackgroundColor() {
       final int index = effectiveRows.indexOf(row);
       if (index % 2 != 0) {
-        return Colors.grey[300]!;
+        return Colors.grey[200]!;
       }
 
       return Colors.transparent;

@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:cerebro_mobile/molecules/searchdues.dart';
 import 'package:cerebro_mobile/pages/student/dues/assessment_fees.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
@@ -23,10 +24,10 @@ class AssessmentTable {
 
 class MyDues1 extends StatefulWidget {
   @override
-  _MyDues1State createState() => _MyDues1State();
+  MyDues1State createState() => MyDues1State();
 }
 
-class _MyDues1State extends State<MyDues1> {
+class MyDues1State extends State<MyDues1> {
   late DataPagerController _controller;
   int _rowsPerPage = 5; // Default rows per page
 
@@ -85,7 +86,11 @@ class _MyDues1State extends State<MyDues1> {
     ),
   ];
 
-  late _AssessmentDataSource _assessmentDataSource;
+  late var _assessmentDataSource = _AssessmentDataSource(
+    data: [],
+    context: context,
+    rowsPerPage: 5,
+  );
 
   @override
   void initState() {
@@ -94,6 +99,7 @@ class _MyDues1State extends State<MyDues1> {
     _assessmentDataSource = _AssessmentDataSource(
       data: _data,
       rowsPerPage: _rowsPerPage,
+      context: context,
     );
   }
 
@@ -107,40 +113,46 @@ class _MyDues1State extends State<MyDues1> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 10),
-                Text(
-                  'My Dues', // Title added here
-                  style: TextStyle(
-                    color: Color.fromRGBO(0, 84, 166, 1),
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: Row(
+                    children: [
+                      Text(
+                        'Show ',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      SizedBox(width: 8),
+                      DropdownButton<int>(
+                        value: _rowsPerPage,
+                        onChanged: (value) => setState(() {
+                          print("Selected rows per page: $value");
+                          _rowsPerPage = value!;
+                          _assessmentDataSource.updateRowsPerPage(value);
+                        }),
+                        items: [5, 10, 20, 30, 50]
+                            .map<DropdownMenuItem<int>>((int value) {
+                          return DropdownMenuItem<int>(
+                            value: value,
+                            child: Text(value.toString()),
+                          );
+                        }).toList(),
+                      ),
+                      SizedBox(width: 8),
+                      Text(
+                        'entries',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      SearchDues(),
+                    ],
                   ),
                 ),
-                SizedBox(height: 5,),
-                Row(
-                  children: [
-                    Text('Show '),
-                    SizedBox(width: 8),
-                    DropdownButton<int>(
-                      value: _rowsPerPage,
-                      onChanged: (value) => setState(() {
-                        print("Selected rows per page: $value");
-                        _rowsPerPage = value!;
-                        _assessmentDataSource.updateRowsPerPage(value);
-                      }),
-                      items: [5, 10, 20, 30, 50]
-                          .map<DropdownMenuItem<int>>((int value) {
-                        return DropdownMenuItem<int>(
-                          value: value,
-                          child: Text(value.toString()),
-                        );
-                      }).toList(),
-                    ),
-                    SizedBox(width: 8),
-                    Text('entries'),
-                  ],
-                ),
-                //SizedBox(height: 12),
+                SizedBox(height: 12),
                 SizedBox(
                   height: constraint.maxHeight - 250,
                   width: constraint.maxWidth,
@@ -162,8 +174,7 @@ class _MyDues1State extends State<MyDues1> {
                         visibleItemsCount: 5,
                         delegate: _assessmentDataSource,
                         controller: _controller,
-                        pageCount:
-                            (_data.length / _rowsPerPage).ceil().toDouble(),
+                        pageCount: (_data.length / _rowsPerPage).ceil().toDouble(),
                         onPageNavigationStart: (int pageIndex) =>
                             _assessmentDataSource.goToPage(pageIndex),
                       ),
@@ -182,7 +193,11 @@ class _MyDues1State extends State<MyDues1> {
     return SfDataGridTheme(
       data: SfDataGridThemeData(headerColor: Colors.blue),
       child: SfDataGrid(
-        source: _assessmentDataSource,
+        source: _AssessmentDataSource(
+          data: _data,
+          rowsPerPage: _rowsPerPage,
+          context: context,
+        ),
         frozenColumnsCount: 1,
         columnWidthMode: ColumnWidthMode.auto,
         allowPullToRefresh: true,
@@ -195,8 +210,10 @@ class _MyDues1State extends State<MyDues1> {
               child: Text(
                 'Assessment Number',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white,
-                fontWeight: FontWeight.bold,),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             width: 200,
@@ -209,8 +226,10 @@ class _MyDues1State extends State<MyDues1> {
               child: Text(
                 'Date Issued',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white,
-                fontWeight: FontWeight.bold,),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -222,8 +241,10 @@ class _MyDues1State extends State<MyDues1> {
               child: Text(
                 'Due Date',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white,
-                fontWeight: FontWeight.bold,),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             width: 100,
@@ -236,8 +257,10 @@ class _MyDues1State extends State<MyDues1> {
               child: Text(
                 'Amount',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white,
-                fontWeight: FontWeight.bold,),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             width: 100,
@@ -250,8 +273,10 @@ class _MyDues1State extends State<MyDues1> {
               child: Text(
                 'Status',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white,
-                fontWeight: FontWeight.bold,),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             width: 100,
@@ -263,7 +288,9 @@ class _MyDues1State extends State<MyDues1> {
 }
 
 class _AssessmentDataSource extends DataGridSource {
-  _AssessmentDataSource({required this.data, required this.rowsPerPage});
+  final BuildContext context;
+  _AssessmentDataSource(
+      {required this.data, required this.context, required this.rowsPerPage});
 
   List<AssessmentTable> data;
   int rowsPerPage;
@@ -290,12 +317,13 @@ class _AssessmentDataSource extends DataGridSource {
             ),
             DataGridCell<String>(
               columnName: 'Date-issued',
-              value:
-                  DateFormat('yyyy-MM-dd').format(data[dataIndex].dateIssued),
+              value: DateFormat('yyyy-MM-dd')
+                  .format(data[dataIndex].dateIssued),
             ),
             DataGridCell<String>(
               columnName: 'due-date',
-              value: DateFormat('yyyy-MM-dd').format(data[dataIndex].dueDate),
+              value:
+                  DateFormat('yyyy-MM-dd').format(data[dataIndex].dueDate),
             ),
             DataGridCell<String>(
               columnName: 'amount',
@@ -332,15 +360,19 @@ class _AssessmentDataSource extends DataGridSource {
                 if (e.value == 'ABC-2024-000009') {
                   // Navigate to Fees page
                   Navigator.push(
-                    Fees() as BuildContext,
-                    MaterialPageRoute(builder: (context) => Fees()), // Need to define FeesPage widget
+                    context, // Pass the context here
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          Fees(), // Replace with your FeesPage widget
+                    ),
                   );
                 } else {
                   print('Navigate to payment for ${e.value}');
                 }
               },
               style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue), // Assuming cerebroBlue200 is not defined here
+                foregroundColor: MaterialStateProperty.all<Color>(
+                    Colors.blue), // Assuming cerebroBlue200 is not defined here
               ),
               child: Text(
                 e.value.toString(),
@@ -363,12 +395,13 @@ class _AssessmentDataSource extends DataGridSource {
   void updateRowsPerPage(int newRowsPerPage) {
     if (rowsPerPage != newRowsPerPage) {
       rowsPerPage = newRowsPerPage;
-      currentPage = 0;
+      currentPage = 0; // Reset currentPage to 0 when rowsPerPage changes
       notifyListeners();
     }
   }
 
   void goToPage(int pageIndex) {
+    print('Navigating to page: $pageIndex');
     currentPage = pageIndex;
     notifyListeners();
   }

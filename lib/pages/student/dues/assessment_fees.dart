@@ -1,4 +1,6 @@
 import 'dart:math';
+import 'package:cerebro_mobile/organisms/dues_topbar%20.dart';
+import 'package:cerebro_mobile/pages/student/dues/mydues_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:cerebro_mobile/atoms/navigation_drawer.dart';
@@ -85,16 +87,30 @@ class AssessmentFeesState extends State<AssessmentFees> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Title Row
-                    Center(
-                      // Wrapping the text with Center widget
-                      child: Text(
-                        'ASSESSMENT OF FEES',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+                    // Title Row with Back Button
+                    Row(
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.arrow_back),
+                          onPressed: () {
+                            // Handle back button press
+                            Navigator.push(
+                              context, // Pass the context here
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    DuesPage(), // Replace with your FeesPage widget
+                              ),
+                            );
+                          },
                         ),
-                      ),
+                        Text(
+                          'ASSESSMENT OF FEES',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                         height:
@@ -351,9 +367,10 @@ class AssessmentFeesState extends State<AssessmentFees> {
                     padding: EdgeInsets.symmetric(horizontal: 8.0),
                     alignment: Alignment.center,
                     child: Text(
-                      'Name', 
+                      'Name',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 17.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -362,8 +379,12 @@ class AssessmentFeesState extends State<AssessmentFees> {
                   label: Container(
                     padding: EdgeInsets.symmetric(horizontal: 8.0),
                     alignment: Alignment.center,
-                    child: Text('Price', textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold),),
+                    child: Text(
+                      'Price',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 17.0, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ],
