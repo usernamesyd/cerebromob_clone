@@ -83,10 +83,10 @@ class TeachersClassListPage extends StatefulWidget {
   const TeachersClassListPage({Key? key}) : super(key: key);
 
   @override
-  _TeachersClassListPageState createState() => _TeachersClassListPageState();
+  TeachersClassListPageState createState() => TeachersClassListPageState();
 }
 
-class _TeachersClassListPageState extends State<TeachersClassListPage> {
+class TeachersClassListPageState extends State<TeachersClassListPage> {
   void _showSubmissionDialog() {
     showDialog(
       context: context, // Now context is accessible
