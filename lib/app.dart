@@ -1,4 +1,3 @@
-import 'package:cerebro_mobile/organisms/dues_topbar%20.dart';
 import 'package:cerebro_mobile/pages/splash_page.dart';
 import 'package:cerebro_mobile/pages/student/dashboard/dashboard.dart';
 import 'package:cerebro_mobile/pages/teacher/dashboard/dashboard.dart';
@@ -16,7 +15,7 @@ class CerebroMobileApp extends StatelessWidget {
         fontFamily: 'Poppins',
         primaryColor: cerebroBlue100,
       ),
-      home: DuesPage(),
+      home: SplashPage(),
     );
   }
 }
