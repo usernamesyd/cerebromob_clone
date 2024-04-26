@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:cerebro_mobile/atoms/cerebro_floating_btn.dart';
 import 'package:cerebro_mobile/organisms/dues_topbar%20.dart';
 import 'package:cerebro_mobile/pages/student/dues/mydues_dashboard.dart';
 import 'package:flutter/material.dart';
@@ -37,8 +38,7 @@ class AssessmentFees extends StatefulWidget {
 }
 
 class AssessmentFeesState extends State<AssessmentFees> {
-  late DataPagerController _controller;
-  int _rowsPerPage = 5; // Default rows per page
+// Default rows per page
 
   final List<TuitionFees> _tuitionData = [
     TuitionFees(Name: 'English 1', Price: 'P 1.00'),
@@ -61,7 +61,6 @@ class AssessmentFeesState extends State<AssessmentFees> {
   @override
   void initState() {
     super.initState();
-    _controller = DataPagerController();
   }
 
   @override
@@ -83,254 +82,255 @@ class AssessmentFeesState extends State<AssessmentFees> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Title Row with Back Button
                     Row(
                       children: [
-                        IconButton(
-                          icon: Icon(Icons.arrow_back),
-                          onPressed: () {
-                            // Handle back button press
-                            Navigator.push(
-                              context, // Pass the context here
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    DuesPage(), // Replace with your FeesPage widget
-                              ),
-                            );
-                          },
-                        ),
-                        Text(
-                          'ASSESSMENT OF FEES',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        CerebroFloatingButton(text: "Assessment of Fees"),
                       ],
                     ),
-                    SizedBox(
-                        height:
-                            10), // Adding some space between the title and the rows
-
-                    // Assessment Number Row
-                    buildRow('Assessment Number:', '  ABC-2024-000009'),
-
-                    // Date Created Row
-                    buildRow('Date Created:', '  April 10, 2024'),
-
-                    // Tuition Fees Title
-
+                    SizedBox(height: 4),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Text(
-                        'Tuition Fees',
-                        style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    _buildDataGrid(constraint, _tuitionDataSource),
-
-                    // Miscellaneous Fees Title
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Text(
-                        'Miscellaneous Fees',
-                        style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    _buildDataGrid(constraint, _miscellaneousDataSource),
-
-                    // Divider
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Card(
-                      color: Colors.grey[100], // Background color
-                      elevation: 4, // Shadow elevation
-                      shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(12.0), // Rounded corners
-                      ),
-                      margin: EdgeInsets.all(16), // Margin around the card
-                      child: Padding(
-                        padding: EdgeInsets.all(16), // Padding inside the card
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.info, color: cerebroBlue300),
-                                        SizedBox(width: 4),
-                                        Text(
-                                          'Tuition Fees Total:',
-                                          style: textStyleLabel,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text(
-                                      'P 883.96',
-                                      style: textStyle,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 12),
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.check_circle,
-                                            color: cerebroBlue300),
-                                        SizedBox(width: 4),
-                                        Text(
-                                          'Miscellaneous Fees Total:',
-                                          style: textStyleLabel,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text(
-                                      'P 0.00',
-                                      style: textStyle,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 12),
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.check_circle,
-                                            color: cerebroBlue300),
-                                        SizedBox(width: 4),
-                                        Text(
-                                          'Amount to Pay:',
-                                          style: textStyleLabel,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text(
-                                      'P 883.96',
-                                      style: textStyle,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 12),
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.check_circle,
-                                            color: cerebroBlue300),
-                                        SizedBox(width: 4),
-                                        Text(
-                                          'Remaining Balance:',
-                                          style: textStyleLabel,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text(
-                                      'P 883.96',
-                                      style: textStyle,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 12),
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.check_circle,
-                                            color: cerebroBlue300),
-                                        SizedBox(width: 4),
-                                        Text(
-                                          'Payment Reference:',
-                                          style: textStyleLabel,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text(
-                                      '',
-                                      style: textStyle,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            ElevatedButton.icon(
-                              onPressed: () {
-                                // Handle Payment Link button click
-                              },
-                              icon: Icon(Icons.payment,
-                                  size: 24, // Change icon size
-                                  color: Colors.white), // Change icon color
-                              label: Text(
-                                'Pay Online',
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            children: [
+                              // Assessment Number Row
+                              buildRow(
+                                  'Assessment Number:', '  ABC-2024-000009'),
+                              // Date Created Row
+                              buildRow('Date Created:', '  April 10, 2024'),
+                              // Tuition Fees Title
+                            ],
+                          ), // Adding some space between the title and the rows
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 16.0),
+                            child: Text(
+                              'Tuition Fees',
+                              style: TextStyle(
+                                fontSize: 17.0,
+                                fontWeight: FontWeight.bold,
                               ),
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(cerebroBlue300),
-                                foregroundColor: MaterialStateProperty.all(
-                                    Colors.white), // Change button color
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                          _buildDataGrid(constraint, _tuitionDataSource),
+
+                          // Miscellaneous Fees Title
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 16.0),
+                            child: Text(
+                              'Miscellaneous Fees',
+                              style: TextStyle(
+                                fontSize: 17.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          _buildDataGrid(constraint, _miscellaneousDataSource),
+
+                          // Divider
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Card(
+                            color: Colors.grey[100], // Background color
+                            elevation: 4, // Shadow elevation
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  12.0), // Rounded corners
+                            ),
+                            margin:
+                                EdgeInsets.all(16), // Margin around the card
+                            child: Padding(
+                              padding:
+                                  EdgeInsets.all(16), // Padding inside the card
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Icon(Icons.info,
+                                                  color: cerebroBlue300),
+                                              SizedBox(width: 4),
+                                              Text(
+                                                'Tuition Fees Total:',
+                                                style: textStyleLabel,
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          Text(
+                                            'P 883.96',
+                                            style: textStyle,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
-                                ),
+                                  SizedBox(height: 12),
+                                  Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Icon(Icons.check_circle,
+                                                  color: cerebroBlue300),
+                                              SizedBox(width: 4),
+                                              Text(
+                                                'Miscellaneous Fees Total:',
+                                                style: textStyleLabel,
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          Text(
+                                            'P 0.00',
+                                            style: textStyle,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 12),
+                                  Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Icon(Icons.check_circle,
+                                                  color: cerebroBlue300),
+                                              SizedBox(width: 4),
+                                              Text(
+                                                'Amount to Pay:',
+                                                style: textStyleLabel,
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          Text(
+                                            'P 883.96',
+                                            style: textStyle,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 12),
+                                  Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Icon(Icons.check_circle,
+                                                  color: cerebroBlue300),
+                                              SizedBox(width: 4),
+                                              Text(
+                                                'Remaining Balance:',
+                                                style: textStyleLabel,
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          Text(
+                                            'P 883.96',
+                                            style: textStyle,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 12),
+                                  Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Icon(Icons.check_circle,
+                                                  color: cerebroBlue300),
+                                              SizedBox(width: 4),
+                                              Text(
+                                                'Payment Reference:',
+                                                style: textStyleLabel,
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          Text(
+                                            '',
+                                            style: textStyle,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  ElevatedButton.icon(
+                                    onPressed: () {
+                                      // Handle Payment Link button click
+                                    },
+                                    icon: Icon(Icons.payment,
+                                        size: 24, // Change icon size
+                                        color:
+                                            Colors.white), // Change icon color
+                                    label: Text(
+                                      'Pay Online',
+                                    ),
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              cerebroBlue300),
+                                      foregroundColor:
+                                          MaterialStateProperty.all(Colors
+                                              .white), // Change button color
+                                      shape: MaterialStateProperty.all(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -454,7 +454,7 @@ class _AssessmentDataSource extends DataGridSource {
     Color getRowBackgroundColor() {
       final int index = effectiveRows.indexOf(row);
       if (index % 2 != 0) {
-        return Colors.grey[300]!;
+        return Colors.grey[200]!;
       }
 
       return Colors.transparent;
