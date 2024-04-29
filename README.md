@@ -49,4 +49,26 @@ Ensure that you have the following before you begin:
 
 - Log in using your Google account credentials
     ![Image 1](https://drive.google.com/uc?export=view&id=1lEXQVpGHPkU7ygRigtVVxFOGLGKDgdro)
+
 - Visit the Firebase Console at [Firebase](https://console.firebase.google.com/)
+    ![Image 2](https://drive.google.com/uc?export=view&id=1XRDZl8h6l_vVpPA0UJxOdu9ZeVVNgydn)
+
+2. **Select Your Project:**
+
+- From the list of Firebase projects, select **Cerbro Mobile Plus**
+    ![Image 3](https://drive.google.com/uc?export=view&id=1Re8Bjh_RXcTIscwUpll_S2q2_sVGSqud)
+
+3. **Access the Authentication Section:**
+
+- In the Firebase console, you will find a sidebar with various options. Click on the **Authentication** tab, which is typically represented by an icon resembling a key or a badge.
+    ![Image 4](https://drive.google.com/uc?export=view&id=1M7K715IXmbuQ6Jwe0ipiO9W9yA5oTsuj)
+
+- This will take you to the Authentication dashboard where you can see all the current registered users.
+    ![Image 5](https://drive.google.com/uc?export=view&id=1ShXliOHFBVEfmyV2M8-_pJPNCMgnGVRd)
+
+## Account Creation
+
+1. Go to **Register** page
+2. Fill out all required fields and submit
+3. Check email verification to activate account
+4. Upon login enter the registered email address and use password **"user123"**
