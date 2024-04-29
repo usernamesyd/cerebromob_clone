@@ -28,6 +28,24 @@ For cohesive and documented contributing, we will use the following workflow.
 - `test`: (adding missing tests, refactoring tests; no production code change)
 - `chore`: (updating grunt tasks etc; no production code change)
 
-5. After committing, push the changes and submit a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
-6. Assign a reviewer for the pull request. When the reviewer agreed, he/she must `Accept changes`
-7. Merge the changes to `dev` branch.
+6. After committing, push the changes and submit a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+7. Assign a reviewer for the pull request. When the reviewer agreed, he/she must `Accept changes`
+8. Merge the changes to `dev` branch.
+
+## Accessing the Firebase Authentication Section in the Developer Console
+
+To manage user authentication in your Firebase project, you must access the Firebase Developer Console. Below are the steps to navigate to the Authentication section where you can configure sign-in methods, view users, and set up other authentication features.
+
+**Prerequisites**
+
+Ensure that you have the following before you begin:
+
+- A Google account
+- Access to a Firebase project
+
+**Steps to Access the Authentication Section**
+
+1. **Open the Firebase Console:**
+
+- ![Log in using your Google account credentials.](images/firebaseconsole/FBD1.png)
+- Visit the Firebase Console at [Firebase](https://console.firebase.google.com/)
