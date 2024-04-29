@@ -47,5 +47,6 @@ Ensure that you have the following before you begin:
 
 1. **Open the Firebase Console:**
 
-- ![Log in using your Google account credentials](https://drive.google.com/uc?export=view&id=1lEXQVpGHPkU7ygRigtVVxFOGLGKDgdro)
+- Log in using your Google account credentials
+    ![Image 1](https://drive.google.com/uc?export=view&id=1lEXQVpGHPkU7ygRigtVVxFOGLGKDgdro)
 - Visit the Firebase Console at [Firebase](https://console.firebase.google.com/)
