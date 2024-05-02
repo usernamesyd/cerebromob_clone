@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
 import 'package:cerebro_mobile/atoms/cerebrosmallbtn.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -62,7 +61,7 @@ class ClassAcadPageState extends State<ClassAcadPage> {
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               children: [
-                SizedBox(height: 16),
+                SizedBox(height: 36),
                 Align(
                   alignment: Alignment.centerLeft, // Align to the left
                   child: Text(
@@ -74,13 +73,13 @@ class ClassAcadPageState extends State<ClassAcadPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                SizedBox(height: 24),
                 SizedBox(
-                  height: constraint.maxHeight - 150, // Adjust the height
+                  height: constraint.maxHeight - 190, // Adjust the height
                   width: constraint.maxWidth,
                   child: _buildDataGrid(constraint),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 12,),
                 SizedBox(
                   height: 60,
                   child: Align(
@@ -122,18 +121,14 @@ class ClassAcadPageState extends State<ClassAcadPage> {
         frozenColumnsCount: 1,
         columnWidthMode: ColumnWidthMode.fill,
         gridLinesVisibility: GridLinesVisibility.none,
-        //gridLinesVisibility: GridLinesVisibility.both,
-        //headerGridLinesVisibility: GridLinesVisibility.both,
         columns: [
           GridColumn(
             columnName: 'Academic Period',
-            //width: screenWidth * 0.5, // 60% of the screen width
             label: Container(
-
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                border: Border.all(color: cerebroWhite), // Add border
-                borderRadius: BorderRadius.circular(5.0), // Add rounded corners
+                border: Border.all(color: Colors.white), // Update border color
+                borderRadius: BorderRadius.circular(5.0),
                 color: cerebroBlue200,
               ),
               child: Text('Academic Period',
@@ -147,11 +142,10 @@ class ClassAcadPageState extends State<ClassAcadPage> {
           GridColumn(
             columnName: 'Action',
             label: Container(
-
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                border: Border.all(color: cerebroWhite), // Add border
-                borderRadius: BorderRadius.circular(5.0), // Add rounded corners
+                border: Border.all(color: Colors.white), // Update border color
+                borderRadius: BorderRadius.circular(5.0),
                 color: cerebroBlue200,
               ),
               child: Text('Action',
@@ -173,10 +167,11 @@ class ClassAcadPageState extends State<ClassAcadPage> {
 class _ClassListDataSource extends DataGridSource {
   _ClassListDataSource({required this.data, required this.rowsPerPage});
 
+
   List<ClassListTable> data;
   int rowsPerPage;
   int currentPage = 0;
-
+  
   @override
   List<DataGridRow> get rows {
     final int startIndex = currentPage * rowsPerPage;
@@ -185,7 +180,6 @@ class _ClassListDataSource extends DataGridSource {
     if (startIndex >= data.length) {
       return [];
     }
-
 
     return List.generate(
       endIndex - startIndex,
@@ -216,18 +210,20 @@ DataGridRowAdapter? buildRow(DataGridRow row) {
     }
     return Color.fromRGBO(204, 232, 251, 100);
   }
+
+  
   List<Widget> getCellWidgetList(DataGridRow row) {
     var cells = row.getCells();
     return cells.map<Widget>((cell) {
       if (cell.columnName == 'action') {
         return Container(
           decoration: BoxDecoration(
-            border: Border.all(color: cerebroWhite),
+            border: Border.all(color: Colors.white), // Update border color
             borderRadius: BorderRadius.circular(5.0),
             color: getRowBackgroundColor(),
           ),
           child: Center(
-            child: CerebroElevatedBtn(
+            child: CerebroSmallBtn(
                onPressed: () {},
               text: 'View',
             ),
@@ -236,7 +232,7 @@ DataGridRowAdapter? buildRow(DataGridRow row) {
       } else {
         return Container(
           decoration: BoxDecoration(
-            border: Border.all(color: cerebroWhite),
+            border: Border.all(color: Colors.white), // Update border color
             borderRadius: BorderRadius.circular(5.0),
             color: getRowBackgroundColor(),
           ),
@@ -244,7 +240,7 @@ DataGridRowAdapter? buildRow(DataGridRow row) {
             padding: EdgeInsets.fromLTRB(10.0, 12.0, 10.0, 0.0),
             child: Text(
               cell.value.toString(),
-              style: TextStyle(fontSize: 16.0),
+              style: TextStyle(fontSize: 16.0, color: Colors.black),
             ),
           ),
         );
@@ -263,7 +259,7 @@ DataGridRowAdapter? buildRow(DataGridRow row) {
       notifyListeners();
     }
   }
-
+  
   void goToPage(int pageIndex) {
     print('Navigating to page: $pageIndex');
     currentPage = pageIndex;
