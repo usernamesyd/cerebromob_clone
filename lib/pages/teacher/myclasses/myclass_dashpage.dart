@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
 import 'package:cerebro_mobile/atoms/cerebrosmallbtn.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -32,8 +33,8 @@ class ClassAcadPageState extends State<ClassAcadPage> {
       academicYear: 'ABC School Year 2023-2024',
       action: 'View',
     ),
-      ClassListTable(
-      academicYear: 'ABC School Year 2023-2024',
+    ClassListTable(
+      academicYear: 'ABC School Year 2022-2023',
       action: 'View',
     ),
   ];
@@ -61,6 +62,18 @@ class ClassAcadPageState extends State<ClassAcadPage> {
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               children: [
+                SizedBox(height: 16),
+                Align(
+                  alignment: Alignment.centerLeft, // Align to the left
+                  child: Text(
+                    'My Classes', // Title added here
+                    style: TextStyle(
+                      color: Color.fromRGBO(0, 84, 166, 1),
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
                 SizedBox(height: 12),
                 SizedBox(
                   height: constraint.maxHeight - 150, // Adjust the height
@@ -102,37 +115,51 @@ class ClassAcadPageState extends State<ClassAcadPage> {
   Widget _buildDataGrid(BoxConstraints constraint) {
     return SfDataGridTheme(
       data: SfDataGridThemeData(
-        headerColor: cerebroBlue200,
+        gridLineColor: Colors.transparent,
       ),
       child: SfDataGrid(
         source: _classListDataSource,
         frozenColumnsCount: 1,
         columnWidthMode: ColumnWidthMode.fill,
-        gridLinesVisibility: GridLinesVisibility.both,
-        headerGridLinesVisibility: GridLinesVisibility.both,
+        gridLinesVisibility: GridLinesVisibility.none,
+        //gridLinesVisibility: GridLinesVisibility.both,
+        //headerGridLinesVisibility: GridLinesVisibility.both,
         columns: [
           GridColumn(
-            columnName: 'academic-year',
+            columnName: 'Academic Period',
+            //width: screenWidth * 0.5, // 60% of the screen width
             label: Container(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
+
               alignment: Alignment.center,
-              child: Text(
-                'Academic Year',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white),
+              decoration: BoxDecoration(
+                border: Border.all(color: cerebroWhite), // Add border
+                borderRadius: BorderRadius.circular(5.0), // Add rounded corners
+                color: cerebroBlue200,
               ),
+              child: Text('Academic Period',
+                  style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white)),
             ),
           ),
           GridColumn(
-            columnName: 'action',
+            columnName: 'Action',
             label: Container(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
+
               alignment: Alignment.center,
-              child: Text(
-                'Action',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white),
+              decoration: BoxDecoration(
+                border: Border.all(color: cerebroWhite), // Add border
+                borderRadius: BorderRadius.circular(5.0), // Add rounded corners
+                color: cerebroBlue200,
               ),
+              child: Text('Action',
+                  style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white)),
             ),
             width: MediaQuery.of(context).size.width * 0.3,
           ),
@@ -159,6 +186,7 @@ class _ClassListDataSource extends DataGridSource {
       return [];
     }
 
+
     return List.generate(
       endIndex - startIndex,
       (index) {
@@ -179,37 +207,55 @@ class _ClassListDataSource extends DataGridSource {
     );
   }
 
- @override
-  DataGridRowAdapter? buildRow(DataGridRow row) {
-    Color getRowBackgroundColor() {
-      final int index = effectiveRows.indexOf(row);
-      if (index % 2 != 0) {
-        return Colors.grey[100]!;
-      }
-
-      return Colors.transparent;
+  @override
+DataGridRowAdapter? buildRow(DataGridRow row) {
+  Color getRowBackgroundColor() {
+    final int index = effectiveRows.indexOf(row);
+    if (index % 2 != 0) {
+      return Colors.grey[200]!;
     }
-
-    return DataGridRowAdapter(
-      color: getRowBackgroundColor(),
-      cells: row.getCells().map<Widget>((e) {
-        if (e.columnName == 'action') {
-          return Center(
-            child: CerebroSmallBtn(onPressed: () {  }, text: 'View',)
-          );
-        } else {
-          return Center(
-            child: Text(
-              e.value.toString(),
-              textAlign: TextAlign.center,
-            ),
-          );
-        }
-      }).toList(),
-    );
+    return Color.fromRGBO(204, 232, 251, 100);
   }
-
-
+  List<Widget> getCellWidgetList(DataGridRow row) {
+    var cells = row.getCells();
+    return cells.map<Widget>((cell) {
+      if (cell.columnName == 'action') {
+        return Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: cerebroWhite),
+            borderRadius: BorderRadius.circular(5.0),
+            color: getRowBackgroundColor(),
+          ),
+          child: Center(
+            child: CerebroElevatedBtn(
+               onPressed: () {},
+              text: 'View',
+            ),
+          ),
+        );
+      } else {
+        return Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: cerebroWhite),
+            borderRadius: BorderRadius.circular(5.0),
+            color: getRowBackgroundColor(),
+          ),
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(10.0, 12.0, 10.0, 0.0),
+            child: Text(
+              cell.value.toString(),
+              style: TextStyle(fontSize: 16.0),
+            ),
+          ),
+        );
+      }
+    }).toList();
+  }
+  return DataGridRowAdapter(
+    color: getRowBackgroundColor(),
+    cells: getCellWidgetList(row),
+  );
+}
   void updateRowsPerPage(int newRowsPerPage) {
     if (rowsPerPage != newRowsPerPage) {
       rowsPerPage = newRowsPerPage;
