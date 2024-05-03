@@ -113,50 +113,48 @@ class _GeneralDropdownState extends State<GeneralDropdown> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.0),
-            border: Border.all(
-                color: cerebroGreyborder,
-                width: 1.0,
-                style: BorderStyle.solid,
-            
-            ),
-          color: cerebroGreyinput,
+  width: MediaQuery.of(context).size.width, // Full width
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(5.0),
+    border: Border.all(
+      color: cerebroGreyborder,
+      width: 1.0,
+      style: BorderStyle.solid,
+    ),
+    color: cerebroGreyinput,
+  ),
+  child: Padding(
+    padding: const EdgeInsets.fromLTRB(20.0, 0.0, 10.0, 0.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        DropdownButton<String>(
+          isExpanded: true, // Allow the dropdown to expand to full width
+          items: widget.items.map((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(
+                value,
+                style: TextStyle(
+                  color: cerebroGreyborder,
+                  fontFamily: 'Poppins',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            );
+          }).toList(),
+          value: dropdownValue,
+          onChanged: (String? value) {
+            setState(() {
+              dropdownValue = value!;
+            });
+            widget.onChanged(value!);
+          },
         ),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20.0, 0.0, 10.0, 0.0),
-        
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-
-          children: [
-            DropdownButton<String>(
-              isExpanded: true,
-              items: widget.items.map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value, 
-                  style: TextStyle(
-                    color: cerebroGreyborder,
-                    fontFamily: 'Poppins',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  ),
-                );
-              }).toList(),
-
-              value: dropdownValue,
-              onChanged: (String? value,) {
-                setState(() {
-                  dropdownValue = value!;
-                });
-                widget.onChanged(value!);
-              },
-            ),
-          ],
-        ),
-      ),
-    );
+      ],
+    ),
+  ),
+);
   }
 }
