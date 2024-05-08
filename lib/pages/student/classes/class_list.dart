@@ -1,5 +1,7 @@
+import 'package:cerebro_mobile/atoms/cerebro_elevated_btn_white.dart';
 import 'package:cerebro_mobile/atoms/cerebro_icon_btn_class.dart';
 import 'package:cerebro_mobile/atoms/navigation_drawer.dart';
+import 'package:cerebro_mobile/pages/student/classes/attendance.dart';
 import 'package:cerebro_mobile/pages/student/classes/class_list.dart';
 import 'package:cerebro_mobile/pages/teacher/myclasses/classlist_page.dart';
 import 'package:cerebro_mobile/pages/teacher/myclasses/grades_encoding.dart';
@@ -249,39 +251,13 @@ class _ExpandableClassCardState extends State<ExpandableClassCard> {
                     ],
                   ),
                   SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CerebroIconOnlyButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        TeachersClassListPage())); // Navigate to Classlist
-                          },
-                          iconData: Icons.people),
-                      SizedBox(width: 8),
-                      CerebroIconOnlyButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        TeacherClassAttendance1())); // Navigate to Class Attendance
-                          },
-                          iconData: Icons.check_box),
-                      SizedBox(width: 8),
-                      CerebroIconOnlyButton(
-                          onPressed: () {
-                           Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        TeachersGradesEncoding())); // Navigate to Grades Encoding
-                          },
-                          iconData: Icons.table_chart)
-                    ],
+                  Center(
+                    child: CerebroElevatedBtnWhite(
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => StudentAttendance()));
+                      },
+                      text: 'View Attendance',
+                    ),
                   ),
                 ],
               ),
