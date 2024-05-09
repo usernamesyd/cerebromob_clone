@@ -1,6 +1,12 @@
-# cerebro_mobile
+# Cerebro Mobile
+
+## Introduction
 
 Cerebro Mobile written in Dart/Flutter.
+
+Introducing Cerebro Mobile, the mobile app for teachers and students.It's a comprehensive portal for school needs. Students can view profiles, announcements, classes, track dues, check grades, handle admissions, and request documents. Teachers access profiles, announcements, class lists, manage attendance, and grade encoding, fostering efficient communication and organization in education.
+
+[Cerebro Mobile Application Documentation](https://docs.google.com/document/d/1gUO0kyhNNvAiqIzIlQAYlf03qvybv6Zl-vvz3mTQKt8/edit?usp=sharing)
 
 ## Getting Started
 
@@ -31,44 +37,3 @@ For cohesive and documented contributing, we will use the following workflow.
 6. After committing, push the changes and submit a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 7. Assign a reviewer for the pull request. When the reviewer agreed, he/she must `Accept changes`
 8. Merge the changes to `dev` branch.
-
-## Accessing the Firebase Authentication Section in the Developer Console
-
-To manage user authentication in your Firebase project, you must access the Firebase Developer Console. Below are the steps to navigate to the Authentication section where you can configure sign-in methods, view users, and set up other authentication features.
-
-**Prerequisites**
-
-Ensure that you have the following before you begin:
-
-- A Google account
-- Access to a Firebase project
-
-**Steps to Access the Authentication Section**
-
-1. **Open the Firebase Console:**
-
-- Log in using your Google account credentials
-    ![Image 1](https://drive.google.com/uc?export=view&id=1lEXQVpGHPkU7ygRigtVVxFOGLGKDgdro)
-
-- Visit the Firebase Console at [Firebase](https://console.firebase.google.com/)
-    ![Image 2](https://drive.google.com/uc?export=view&id=1XRDZl8h6l_vVpPA0UJxOdu9ZeVVNgydn)
-
-2. **Select Your Project:**
-
-- From the list of Firebase projects, select **Cerbro Mobile Plus**
-    ![Image 3](https://drive.google.com/uc?export=view&id=1Re8Bjh_RXcTIscwUpll_S2q2_sVGSqud)
-
-3. **Access the Authentication Section:**
-
-- In the Firebase console, you will find a sidebar with various options. Click on the **Authentication** tab, which is typically represented by an icon resembling a key or a badge.
-    ![Image 4](https://drive.google.com/uc?export=view&id=1M7K715IXmbuQ6Jwe0ipiO9W9yA5oTsuj)
-
-- This will take you to the Authentication dashboard where you can see all the current registered users.
-    ![Image 5](https://drive.google.com/uc?export=view&id=1ShXliOHFBVEfmyV2M8-_pJPNCMgnGVRd)
-
-## Account Creation
-
-1. Go to **Register** page
-2. Fill out all required fields and submit
-3. Check email verification to activate account
-4. Upon login enter the registered email address and use password **"user123"**
