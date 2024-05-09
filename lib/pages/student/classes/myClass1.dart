@@ -1,6 +1,4 @@
-import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
 import 'package:cerebro_mobile/atoms/navigation_drawer.dart';
-import 'package:cerebro_mobile/pages/student/grades/mygrades1.dart';
 import 'package:cerebro_mobile/pages/student/classes/class_list.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/theme/texts.dart';
@@ -127,7 +125,7 @@ class _MyClassPane extends State<MyClassPane> {
                                 width: 1.0, color: cerebroWhite),
                           ),
                         ),
-                        padding: EdgeInsets.all(8.0),
+                        padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
                         child: Center(
                           child: Text('ABC School Year 2023-2024',
                               style: TextStyle(
@@ -196,7 +194,7 @@ class _MyClassPane extends State<MyClassPane> {
                                 width: 1.0, color: cerebroWhite),
                           ),
                         ),
-                        padding: EdgeInsets.all(8.0),
+                        padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
                         child: Center(
                           child: Text('ABC School Year 2024-2025  ',
                               style: TextStyle(
@@ -226,7 +224,7 @@ class _MyClassPane extends State<MyClassPane> {
                         padding: EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           onPressed: (){
-                            //Navigator.push(context, MaterialPageRoute(builder: (context) => myGradesPage1()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ClassList()));
                             }, 
                             style: ElevatedButton.styleFrom(
                             //padding: EdgeInsets.symmetric(vertical: 14, horizontal: 16), // Adjust padding

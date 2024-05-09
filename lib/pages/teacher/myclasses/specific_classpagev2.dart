@@ -1,5 +1,7 @@
 import 'package:cerebro_mobile/atoms/cerebro_icon_btn_class.dart';
 import 'package:cerebro_mobile/atoms/navigation_drawer.dart';
+import 'package:cerebro_mobile/atoms/teacher_navdrawer.dart';
+import 'package:cerebro_mobile/organisms/teacher_appbar.dart';
 import 'package:cerebro_mobile/pages/student/classes/class_list.dart';
 import 'package:cerebro_mobile/pages/teacher/myclasses/classlist_page.dart';
 import 'package:cerebro_mobile/pages/teacher/myclasses/grades_encoding.dart';
@@ -15,8 +17,8 @@ class ClassCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CerebroAppBar(title: "My Classes"),
-      drawer: CerebroNavigationDrawer(),
+      appBar: TeacherAppBar(title: "My Classes"),
+      drawer: TeacherNavigationDrawer(),
       body: SingleChildScrollView(
         child: ClassCardsPane(),
       ),

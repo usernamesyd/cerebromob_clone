@@ -1,4 +1,5 @@
 import 'package:cerebro_mobile/pages/teacher/dashboard/dashboard.dart';
+import 'package:cerebro_mobile/pages/teacher/myclasses/myclass_dashpage.dart';
 import 'package:cerebro_mobile/pages/teacher/profile/teacher_edit_profile.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:flutter/material.dart';
@@ -80,8 +81,8 @@ class TeacherNavigationDrawer extends StatelessWidget {
                 leading: Icon(Icons.computer_rounded, color: Colors.white),
                 title: Text('My Classes', style: TextStyle(color: Colors.white)),
                 onTap: () {
-                  //Navigator.push(context,
-                      //MaterialPageRoute(builder: (context) => MyClassesPage())); // Navigate to My Classes Page
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ClassAcadPage())); // Navigate to My Classes Page
                 },
               ),
             ],

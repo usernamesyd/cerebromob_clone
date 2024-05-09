@@ -1,268 +1,255 @@
-import 'dart:math';
-import 'package:cerebro_mobile/atoms/cerebrosmallbtn.dart';
-import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_core/theme.dart';
-import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-import 'package:cerebro_mobile/organisms/cerebro_appbar.dart';
-import 'package:cerebro_mobile/atoms/navigation_drawer.dart';
+import 'package:cerebro_mobile/atoms/teacher_navdrawer.dart';
+import 'package:cerebro_mobile/organisms/teacher_appbar.dart';
+import 'package:cerebro_mobile/pages/student/classes/class_list.dart';
+import 'package:cerebro_mobile/pages/teacher/myclasses/specific_classpagev1.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/theme/texts.dart';
+import 'package:flutter/material.dart';
 
-class ClassListTable {
-  String academicYear;
-  String action;
-
-  ClassListTable({
-    required this.academicYear,
-    required this.action,
-  });
-}
-
-class ClassAcadPage extends StatefulWidget {
-  @override
-  ClassAcadPageState createState() => ClassAcadPageState();
-}
-
-class ClassAcadPageState extends State<ClassAcadPage> {
-  late DataPagerController _controller;
-  int _rowsPerPage = 5; // Default rows per page
-
-  final List<ClassListTable> _data = [
-    ClassListTable(
-      academicYear: 'ABC School Year 2023-2024',
-      action: 'View',
-    ),
-    ClassListTable(
-      academicYear: 'ABC School Year 2022-2023',
-      action: 'View',
-    ),
-  ];
-
-  late _ClassListDataSource _classListDataSource;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = DataPagerController();
-    _classListDataSource = _ClassListDataSource(
-      data: _data,
-      rowsPerPage: _rowsPerPage,
-    );
-  }
+class ClassAcadPage extends StatelessWidget {
+  const ClassAcadPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CerebroAppBar(title: "ABC School of Cavite"),
-      drawer: CerebroNavigationDrawer(),
-      body: LayoutBuilder(
-        builder: (context, constraint) {
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Column(
+      appBar: TeacherAppBar(title: "ABC School of Cavite"),
+      drawer: TeacherNavigationDrawer(),
+      body: Container(
+        color: cerebroWhite,
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: MyClassPane(),
+      )
+    );
+  }
+}
+
+class MyClassPane extends StatefulWidget {
+  const MyClassPane({Key? key});
+
+  @override
+  State<MyClassPane> createState() => _MyClassPane();
+}
+
+class _MyClassPane extends State<MyClassPane> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 28, vertical: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+           Text(
+            'My Classes',
+            style: poppinsH5.copyWith(
+              color: cerebroBlue300,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+          SizedBox(height: 18),
+          Center(
+            child: Table(
               children: [
-                SizedBox(height: 36),
-                Align(
-                  alignment: Alignment.centerLeft, // Align to the left
-                  child: Text(
-                    'My Classes', // Title added here
-                    style: TextStyle(
-                      color: Color.fromRGBO(0, 84, 166, 1),
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
+                TableRow(
+                  children: [
+                    TableCell(child: Container(
+                      decoration: BoxDecoration(
+                              color: cerebroBlue200,
+                              borderRadius: BorderRadius.circular(4.0),
+                              border: Border(
+                                top:
+                                    BorderSide(width: 1.0, color: cerebroWhite),
+                                bottom:
+                                    BorderSide(width: 1.0, color: cerebroWhite),
+                                left:
+                                    BorderSide(width: 2.0, color: cerebroWhite),
+                                right:
+                                    BorderSide(width: 1.0, color: cerebroWhite),
+                              ),
+                            ),
+                            padding: EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Text('Academic Period',
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 12.0,
+                                    color: cerebroWhite,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            ),
+                          ),
                     ),
-                  ),
+                    TableCell(child: Container(
+                      decoration: BoxDecoration(
+                              color: cerebroBlue200,
+                              borderRadius: BorderRadius.circular(4.0),
+                              border: Border(
+                                top:
+                                    BorderSide(width: 1.0, color: cerebroWhite),
+                                bottom:
+                                    BorderSide(width: 1.0, color: cerebroWhite),
+                                left:
+                                    BorderSide(width: 2.0, color: cerebroWhite),
+                                right:
+                                    BorderSide(width: 1.0, color: cerebroWhite),
+                              ),
+                            ),
+                            padding: EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Text('Action',
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 12.0,
+                                    color: cerebroWhite,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            ),
+                          ),
+                    ),
+                  ]
                 ),
-                SizedBox(height: 24),
-                SizedBox(
-                  height: constraint.maxHeight - 190, // Adjust the height
-                  width: constraint.maxWidth,
-                  child: _buildDataGrid(constraint),
-                ),
-                SizedBox(height: 12,),
-                SizedBox(
-                  height: 60,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: SfTheme(
-                      data: SfThemeData(
-                        dataPagerThemeData: SfDataPagerThemeData(
-                          selectedItemColor: Colors.blue,
-                          itemBorderRadius: BorderRadius.circular(5),
+                TableRow(
+                  children: [
+                    TableCell(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                          borderRadius: BorderRadius.circular(4.0),
+                          border: Border(
+                            top: BorderSide(
+                                width: 1.0, color: cerebroWhite),
+                            bottom: BorderSide(
+                                width: 1.0, color: cerebroWhite),
+                            left: BorderSide(
+                                width: 2.0, color: cerebroWhite),
+                            right: BorderSide(
+                                width: 1.0, color: cerebroWhite),
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+                        child: Center(
+                          child: Text('ABC School Year 2023-2024',
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 12.0,
+                                color: Colors.black,
+                              )),
                         ),
                       ),
-                      child: SfDataPager(
-                        visibleItemsCount: 5,
-                        delegate: _classListDataSource,
-                        controller: _controller,
-                        pageCount: double.parse(
-                            (_data.length / _rowsPerPage).ceil().toString()),
-                        onPageNavigationStart: (int pageIndex) =>
-                            _classListDataSource.goToPage(pageIndex),
+                    ),
+                    TableCell(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                          borderRadius: BorderRadius.circular(4.0),
+                          border: Border(
+                            top: BorderSide(
+                                width: 1.0, color: cerebroWhite),
+                            bottom: BorderSide(
+                                width: 1.0, color: cerebroWhite),
+                            left: BorderSide(
+                                width: 2.0, color: cerebroWhite),
+                            right: BorderSide(
+                                width: 1.0, color: cerebroWhite),
+                          ),
+                        ),
+                        padding: EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                          onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ClassCardsPage()));
+                            }, 
+                            style: ElevatedButton.styleFrom(
+                            //padding: EdgeInsets.symmetric(vertical: 14, horizontal: 16), // Adjust padding
+                            // minimumSize: Size(100, 42), Adjust minimum size
+                            backgroundColor: cerebroBlue200,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                          child: Text('View',
+                              style: poppinsH6.copyWith(
+                              color: cerebroWhite,
+                            ),
+                            
+                          )
+                        ),
+                        ),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    TableCell(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                          borderRadius: BorderRadius.circular(4.0),
+                          border: Border(
+                            top: BorderSide(
+                                width: 1.0, color: cerebroWhite),
+                            bottom: BorderSide(
+                                width: 1.0, color: cerebroWhite),
+                            left: BorderSide(
+                                width: 2.0, color: cerebroWhite),
+                            right: BorderSide(
+                                width: 1.0, color: cerebroWhite),
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+                        child: Center(
+                          child: Text('ABC School Year 2024-2025  ',
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 12.0,
+                                color: Colors.black,
+                              )),
+                        ),
                       ),
                     ),
-                  ),
+                    TableCell(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                          borderRadius: BorderRadius.circular(4.0),
+                          border: Border(
+                            top: BorderSide(
+                                width: 1.0, color: cerebroWhite),
+                            bottom: BorderSide(
+                                width: 1.0, color: cerebroWhite),
+                            left: BorderSide(
+                                width: 2.0, color: cerebroWhite),
+                            right: BorderSide(
+                                width: 1.0, color: cerebroWhite),
+                          ),
+                        ),
+                        padding: EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                          onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ClassCardsPage()));
+                            }, 
+                            style: ElevatedButton.styleFrom(
+                            //padding: EdgeInsets.symmetric(vertical: 14, horizontal: 16), // Adjust padding
+                            minimumSize: Size(100, 42), // Adjust minimum size
+                            backgroundColor: cerebroBlue200,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                          child: Text('View',
+                              style: poppinsH6.copyWith(
+                              color: cerebroWhite,
+                            ),
+                          )
+                        ),
+                        ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _buildDataGrid(BoxConstraints constraint) {
-    return SfDataGridTheme(
-      data: SfDataGridThemeData(
-        gridLineColor: Colors.transparent,
-      ),
-      child: SfDataGrid(
-        source: _classListDataSource,
-        frozenColumnsCount: 1,
-        columnWidthMode: ColumnWidthMode.fill,
-        gridLinesVisibility: GridLinesVisibility.none,
-        columns: [
-          GridColumn(
-            columnName: 'Academic Period',
-            label: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.white), // Update border color
-                borderRadius: BorderRadius.circular(5.0),
-                color: cerebroBlue200,
-              ),
-              child: Text('Academic Period',
-                  style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white)),
-            ),
-          ),
-          GridColumn(
-            columnName: 'Action',
-            label: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.white), // Update border color
-                borderRadius: BorderRadius.circular(5.0),
-                color: cerebroBlue200,
-              ),
-              child: Text('Action',
-                  style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white)),
-            ),
-            width: MediaQuery.of(context).size.width * 0.3,
-          ),
+          )
         ],
-        selectionMode: SelectionMode.single,
       ),
     );
-  }
-}
-
-class _ClassListDataSource extends DataGridSource {
-  _ClassListDataSource({required this.data, required this.rowsPerPage});
-
-
-  List<ClassListTable> data;
-  int rowsPerPage;
-  int currentPage = 0;
-  
-  @override
-  List<DataGridRow> get rows {
-    final int startIndex = currentPage * rowsPerPage;
-    final int endIndex = min(startIndex + rowsPerPage, data.length);
-
-    if (startIndex >= data.length) {
-      return [];
-    }
-
-    return List.generate(
-      endIndex - startIndex,
-      (index) {
-        final int dataIndex = startIndex + index;
-        return DataGridRow(
-          cells: [
-            DataGridCell<String>(
-              columnName: 'academic-year',
-              value: data[dataIndex].academicYear,
-            ),
-            DataGridCell<String>(
-              columnName: 'action',
-              value: data[dataIndex].action,
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  @override
-DataGridRowAdapter? buildRow(DataGridRow row) {
-  Color getRowBackgroundColor() {
-    final int index = effectiveRows.indexOf(row);
-    if (index % 2 != 0) {
-      return Colors.grey[200]!;
-    }
-    return Color.fromRGBO(204, 232, 251, 100);
-  }
-
-  
-  List<Widget> getCellWidgetList(DataGridRow row) {
-    var cells = row.getCells();
-    return cells.map<Widget>((cell) {
-      if (cell.columnName == 'action') {
-        return Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.white), // Update border color
-            borderRadius: BorderRadius.circular(5.0),
-            color: getRowBackgroundColor(),
-          ),
-          child: Center(
-            child: CerebroSmallBtn(
-               onPressed: () {},
-              text: 'View',
-            ),
-          ),
-        );
-      } else {
-        return Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.white), // Update border color
-            borderRadius: BorderRadius.circular(5.0),
-            color: getRowBackgroundColor(),
-          ),
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(10.0, 12.0, 10.0, 0.0),
-            child: Text(
-              cell.value.toString(),
-              style: TextStyle(fontSize: 16.0, color: Colors.black),
-            ),
-          ),
-        );
-      }
-    }).toList();
-  }
-  return DataGridRowAdapter(
-    color: getRowBackgroundColor(),
-    cells: getCellWidgetList(row),
-  );
-}
-  void updateRowsPerPage(int newRowsPerPage) {
-    if (rowsPerPage != newRowsPerPage) {
-      rowsPerPage = newRowsPerPage;
-      currentPage = 0;
-      notifyListeners();
-    }
-  }
-  
-  void goToPage(int pageIndex) {
-    print('Navigating to page: $pageIndex');
-    currentPage = pageIndex;
-    notifyListeners();
   }
 }
