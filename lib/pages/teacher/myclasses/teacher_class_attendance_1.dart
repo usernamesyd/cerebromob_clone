@@ -2,6 +2,7 @@ import 'package:cerebro_mobile/atoms/cerebro_elevated_btn.dart';
 import 'package:cerebro_mobile/atoms/cerebro_floating_btn.dart';
 import 'package:cerebro_mobile/atoms/navigation_drawer.dart';
 import 'package:cerebro_mobile/organisms/cerebro_appbar.dart';
+import 'package:cerebro_mobile/pages/teacher/myclasses/teacher_class_attendance_2.dart';
 import 'package:cerebro_mobile/theme/colors.dart';
 import 'package:cerebro_mobile/theme/texts.dart';
 import 'package:flutter/cupertino.dart';
@@ -72,18 +73,16 @@ class ClassAttendance extends StatelessWidget {
                 SizedBox(height: 20), // Added some space between the text and the button
 
                 CerebroElevatedBtn(
-                onPressed: () {
-                },
+                onPressed: () {},
                 text: 'Add Attendance Date',
                 backgroundColor: cerebroBlue200,
                 textColor: cerebroWhite,
                 ),
 
-                SizedBox(height: 20),
+                SizedBox(height: 12),
 
                 //Implement DataGrid Here-----<>------
                     Container(
-                        
                         padding: EdgeInsets.all(20.0),
                         child: SfDataGridTheme(
                           data: SfDataGridThemeData(
@@ -174,7 +173,6 @@ class AttachmentDataSource extends DataGridSource {
         attachment: 'Aquino, Rafaela',
         action: () {
           // Define action for Aquino, Rafaela
-          // For example: Navigator.push(context, MaterialPageRoute(builder: (context) => TeacherClassAttendance2()));
         }),
     Attachment(
         attachment: 'Cruzado, Andres',
@@ -191,8 +189,6 @@ class AttachmentDataSource extends DataGridSource {
         action: () {
           // Define action for Cruzado, Andres
         }),
-      
-        
   ];
 
   @override
