@@ -10,7 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class ProfileScreen extends StatelessWidget {
   final String userName = 'Rafaela Aquino';
   final String userRole = 'Student';
-  final String profileImagePath = 'assets/images/profilepic.png';
+  final String profileImagePath = 'assets/images/profile.png';
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   @override

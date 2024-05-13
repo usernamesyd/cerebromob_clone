@@ -53,7 +53,7 @@ class CerebroAppBar extends StatelessWidget implements PreferredSizeWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage('assets/images/pfp.png'),
+                  image: AssetImage('assets/images/profile.png'),
                   fit: BoxFit.cover, // Adjust fit as needed
                 ),
               ),
